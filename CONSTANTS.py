@@ -1,0 +1,6 @@
+USERS_TABLE = '/users'
+LIBRARY_TABLE = '/library'
+
+LOGIN_FAILED = -1
+LOGIN_ADMIN = 0
+LOGIN_CLIENT = 1

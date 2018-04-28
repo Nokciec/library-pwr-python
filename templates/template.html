@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rzeczy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for("static", filename='hack.css') }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename='dark-grey.css') }}">
+</head>
+
+<body class="hack dark-grey">
+
+    <div class="container">
+
+        <p>Biblioteka kurw</p>
+    
+        {{session['username']}}, {{session['user_type']}}
+
+
+        {% for book in books %}
+  			<li>{{ book.book_title }}</li>
+		{% endfor %}
+     </div>
+        
+</body>
+
+</html>

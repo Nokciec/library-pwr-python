@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rzeczy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for("static", filename='hack.css') }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename='dark-grey.css') }}">
+</head>
+
+<body class="hack dark-grey">
+
+    <div class="container justify-content-center">
+
+        <form class="form justify-content-center" method="POST" action='/verify-login'>
+         <!--
+          <fieldset class="form-group">
+            <label for="username">USERNAME:</label>
+            <input name='password' placeholder="type your name..." class="form-control">
+          </fieldset>
+        -->
+          <fieldset class="form-group">
+            <label for="password">PASSWORD:</label>
+            <input type="password" name='password' class="form-control">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="password">USERNAME:</label>
+            <input type="text" name='username' class="form-control">
+          </fieldset>
+          <div class="form-actions">
+            <button type="submit" action='submit' class="btn btn-primary btn-block">Submit</button>
+          </div>
+        </form>
+
+    </div>
+</body>
+
+</html>

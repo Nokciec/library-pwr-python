@@ -24,8 +24,9 @@ def login():
 
 @app.route('/admin')
 def admin():
-        return render_template('admin.html')
+		library_books = Library(CONSTANTS.LIBRARY_TABLE)
 
+		return render_template('admin.html', books=library_books.books)
 
 @app.route('/add-book', methods = ['POST'])
 def add_book():

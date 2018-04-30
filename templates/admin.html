@@ -1,58 +1,85 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Rzeczy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for("static", filename='hack.css') }}">
     <link rel="stylesheet" href="{{ url_for("static", filename='dark-grey.css') }}">
-</head>
-
-<body class="hack dark-grey">
-
-    <div class="container">
+  </head>
+  <body class="hack dark-grey">
+    {% if session['user_type']=='admin' %}
+      <div class="">
+        <div class="grid">
+          <div class="cell -1of12"></div>
+          <div class="cell -6of12">
+            <p> <strong>Manage books:</strong></p>
+            {% for book in books %}
+              <div class="card">
+                <header class="card-header">
+                  {{book.book_title}}
+                </header>
+                <div class="card-content">
+                  <div class="inner">
+                    <div class="grid">
+                      <div class="cell -6of12">
+                        Author:{{book.book_author}}
     
-    	{% if session['user_type']=='admin' %}
-
-    		<form class="form justify-content-center" method="POST" action='/add-book'>
-          <fieldset class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" name='title' class="form-control">
-          </fieldset>
-          <fieldset class="form-group">
-            <label for="author">Author:</label>
-            <input type="text" name='author' class="form-control">
-          </fieldset>
-                    <fieldset class="form-group">
-            <label for="ISBN">ISBN:</label>
-            <input type="text" name='ISBN' class="form-control">
-          </fieldset>
-                    <fieldset class="form-group">
-            <label for="publication_date">Publication date:</label>
-            <input type="text" name='publication_date' class="form-control">
-          </fieldset>
-                    <fieldset class="form-group">
-            <label for="publication_place">#todo place:</label>
-            <input type="text" name='publication_place' class="form-control">
-          </fieldset>
-                    <fieldset class="form-group">
-            <label for="publisher">Publisher:</label>
-            <input type="text" name='publisher' class="form-control">
-          </fieldset>
-                    <fieldset class="form-group">
-            <label for="number_of_pages">Number of pages:</label>
-            <input type="text" name='number_of_pages' class="form-control">
-          </fieldset>
-          <div class="form-actions">
-            <button type="submit" action='submit' class="btn btn-primary btn-block">Submit</button>
+                      </div>
+                    </div>
+                                   </div>
+                  
+                </div>
+                <div class="card-content">
+                  <div class="example">
+                  <a href="/delete/{{key}}" class="btn btn-error btn-ghost">Delete</a>
+                  <a class="btn btn-warning btn-ghost">Rent</a>
+                  <a class="btn btn-primary btn-ghost">Return</a>
+                  </div>
+                </div>
+              </div>
+            <hr> {% endfor %}
+            
           </div>
-        </form>
-
-
-    	{% endif %}
-
-    </div>
-        
-</body>
-
+          <div class="cell -1of12"></div>
+          <div class="cell -3of12">
+            
+            <p> <strong> Add new book: </strong></p>
+            <form class="form justify-content-center" method="POST" action='/add-book'>
+              <fieldset class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" name='title' class="form-control">
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" name='author' class="form-control">
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="ISBN">ISBN:</label>
+                <input type="text" name='ISBN' class="form-control">
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="publication_date">Publication date:</label>
+                <input type="text" name='publication_date' class="form-control">
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="publication_place">#todo place:</label>
+                <input type="text" name='publication_place' class="form-control">
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="publisher">Publisher:</label>
+                <input type="text" name='publisher' class="form-control">
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="number_of_pages">Number of pages:</label>
+                <input type="text" name='number_of_pages' class="form-control">
+              </fieldset>
+              <div class="form-actions">
+                <button type="submit" action='submit' class="btn btn-primary btn-block">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </body>
 </html>

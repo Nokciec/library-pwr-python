@@ -4,6 +4,7 @@ from LoginManager import LoginManager
 import CONSTANTS
 from Book import Book
 from Library import Library
+from DatabaseConnection import DatabaseConnection as DC
 
 app = Flask(__name__)
 app.secret_key = 'something'
@@ -51,7 +52,6 @@ def add_book():
 		return 'Nie kombinuj...'
 
 
-
 @app.route('/verify-login', methods = ['POST'])
 def verify_login():
 
@@ -66,8 +66,6 @@ def verify_login():
 		else:
 			session['user_type'] = 'client'
 			return redirect(url_for('client'))
-
-
 	else:
 		return redirect(url_for('login'))
     
@@ -76,6 +74,12 @@ def log_out():
 
 	session.clear()
 	return redirect(url_for('login'))
+
+@app.route('/delete/<key>')
+def delete_book(key):
+	DC.delete_data('/library', key)
+	return redirect(url_for('admin'))
+
 
 
 if __name__ == '__main__':

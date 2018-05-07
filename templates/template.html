@@ -11,10 +11,15 @@
 <body class="hack dark-grey">
 
     <div class="container">
+        <p> </p>
+        <button class="btn btn-default">Sign up</button>
+        <a href="/register" class="btn btn-default">Sign up</a>
+        <button class="btn btn-default">Log in </button>
+        <a href="/login" class="btn btn-default">Log in</a>
 
-        <p>Biblioteka kurw</p>
+        <p>Biblioteka kurwaaQQQQQ</p>
     
-        {{session['username']}}, {{session['user_type']}}
+        {{session['username']}} , {{session['user_type']}}
 
 
         {% for book in books %}

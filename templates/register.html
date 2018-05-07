@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Rzeczy</title>
+    <title>Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for("static", filename='hack.css') }}">
     <link rel="stylesheet" href="{{ url_for("static", filename='dark-grey.css') }}">
@@ -12,22 +12,37 @@
 
     <div class="container justify-content-center">
 
-        <form class="form justify-content-center" method="POST" action='/verify-login'>
-         <!--
-          <fieldset class="form-group">
-            <label for="username">USERNAME:</label>
-            <input name='password' placeholder="type your name..." class="form-control">
-          </fieldset>
-        -->
+        <p><strong>Fill out the form:</strong></p>
+        <form class="form justify-content-center" method="POST" action='/create-account'>
 
           <fieldset class="form-group">
-            <label for="password">USERNAME:</label>
+            <label for="name">NAME:</label>
+            <input type="text" name='name' class="form-control">
+          </fieldset>
+
+          <fieldset class="form-group">
+            <label for="surname">SURNAME:</label>
+            <input type="text" name='surname' class="form-control">
+          </fieldset>
+
+          <fieldset class="form-group">
+            <label for="username">USERNAME:</label>
             <input type="text" name='username' class="form-control">
           </fieldset>
+
           <fieldset class="form-group">
             <label for="password">PASSWORD:</label>
             <input type="password" name='password' class="form-control">
           </fieldset>
+
+          <fieldset class="form-group">
+            <label for="account-type">WHO ARE YOU?</label>
+            <select id="account-type" class="form-control">
+              <option>Client</option>
+              <option>Librarian</option>
+            </select>
+          </fieldset>
+
           <div class="form-actions">
             <button type="submit" action='submit' class="btn btn-primary btn-block">Submit</button>
           </div>

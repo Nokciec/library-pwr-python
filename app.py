@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, url_for
 from flask_session import Session
 from LoginManager import LoginManager
 import CONSTANTS
@@ -6,7 +6,7 @@ from Book import Book
 from Library import Library
 
 app = Flask(__name__)
-app.secret_key = 'lol beka'
+app.secret_key = 'something'
 
 
 @app.route('/')
@@ -20,6 +20,10 @@ def homepage():
 @app.route('/login')
 def login():
         return render_template('login.html')
+
+@app.route('/register')
+def register():
+        return render_template('register.html')
 
 
 @app.route('/admin')
@@ -58,13 +62,21 @@ def verify_login():
 
 		if login_status == CONSTANTS.LOGIN_ADMIN:
 			session['user_type'] = 'admin'
+			return redirect(url_for('admin'))
 		else:
 			session['user_type'] = 'client'
+			return redirect(url_for('client'))
 
-		return 'logged in'
+
 	else:
-		return 'fail'
+		return redirect(url_for('login'))
     
+@app.route('/log-out')
+def log_out():
+
+	session.clear()
+	return redirect(url_for('login'))
+
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)

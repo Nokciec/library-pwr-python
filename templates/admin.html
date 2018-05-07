@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Rzeczy</title>
+    <title>Admin's site</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for("static", filename='hack.css') }}">
     <link rel="stylesheet" href="{{ url_for("static", filename='dark-grey.css') }}">
   </head>
   <body class="hack dark-grey">
+    {% include 'navbar.html' %}
     {% if session['user_type']=='admin' %}
       <div class="">
         <div class="grid">
@@ -16,17 +17,58 @@
             {% for book in books %}
               <div class="card">
                 <header class="card-header">
-                  {{book.book_title}}
+                  {{book.book_title}}, {{book.book_author}}
                 </header>
                 <div class="card-content">
                   <div class="inner">
                     <div class="grid">
                       <div class="cell -6of12">
-                        Author:{{book.book_author}}
-    
+                        Publication date: {{book.book_publicationDate}}<br/>
+                        Publication place: {{book.book_publicationPlace}}<br/>
+                        Publisher: {{book.book_publisher}}<br/>
+                        Number of pages: {{book.book_pagesNumber}}<br/>
+                        ISBN: {{book.book_ISBN}}
+                      </div>
+                      <div class="cell -6of12">
+                          <!--
+                            Availability: {{book.book_availability}}<br/>
+                            Borrower login: {{book.book_borrower_login}}<br/>
+                            Start date: {{book.book_startdate}}<br/>
+                            End date: {{book.book_enddate}}<br/>
+                            Reservation: {{book.book_reservation}}<br/>
+                            Reserver's login: {{book.book_reserve_login}}
+                          -->
+
+                        {% if book.book_availability == True %}
+                          {% if book.book_reservation==False %}
+                            Availability: {{book.book_availability}}<br>
+                            Reservation: {{book.book_reservation}}<br>
+                          {% endif %}
+                          {% if book.book_reservation==True %}
+                            Availability: {{book.book_availability}}<br>
+                            Reservation: {{book.book_reservation}}<br>
+                            Reserver's login: {{book.book_reserve_login}}<br>
+                          {% endif %}
+                        {% else %}
+                          {% if book.book_reservation==True %}
+                            Availability: {{book.book_availability}}<br>
+                            Borrower login: {{book.book_borrower_login}}<br>
+                            Start date: {{book.book_startdate}}<br>
+                            End date: {{book.book_enddate}}<br>
+                            Reservation: {{book.book_reservation}}<br>
+                            Reserver's login: {{book.book_reserve_login}}<br>
+                          {% endif %}
+                          {% if book.book_reservation==False %}
+                            Availability: {{book.book_availability}}<br>
+                            Borrower login: {{book.book_borrower_login}}<br>
+                            Start date: {{book.book_startdate}}<br>
+                            End date: {{book.book_enddate}}<br>
+                            Reservation: {{book.book_reservation}}<br>
+                          {% endif %}
+                        {% endif %}
                       </div>
                     </div>
-                                   </div>
+                  </div>
                   
                 </div>
                 <div class="card-content">
@@ -58,7 +100,7 @@
                 <input type="text" name='ISBN' class="form-control">
               </fieldset>
               <fieldset class="form-group">
-                <label for="publication_date">Publication date:</label>
+                <label for="publication_date">#todo date:</label>
                 <input type="text" name='publication_date' class="form-control">
               </fieldset>
               <fieldset class="form-group">

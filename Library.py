@@ -18,6 +18,8 @@ class Library(BookList):
 		book_path = self.path +'/'+ book_id + '/'
 		DC.firebase.put(book_path,'book_availability', False)
 		DC.firebase.put(book_path, 'book_borrower_login',login)
+		DC.firebase.put(book_path, 'book_reserver_login', '')
+		DC.firebase.put(book_path, 'book_reservation', False)		
 
 		start_date = datetime.datetime.now()
 		end_date = start_date + datetime.timedelta(days=30)

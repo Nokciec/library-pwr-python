@@ -11,19 +11,22 @@
 <body class="hack dark-grey">
 
     <div class="container">
+        <p><strong> </strong></p>
         <a href="/register" class="btn btn-default">Sign up</a>
         <a href="/login" class="btn btn-default">Log in</a>
 
-        <p>Biblioteka kurwaaQQQQQ</p>
+        <!--<p>Biblioteka to jest</p>
             to jest do dopracowania, easy
         {{session['username']}} , {{session['user_type']}}
-
-
-        {% for book in books %}
-  			<li>{{ book.book_title }}</li>
-		{% endfor %}
+        -->
+        <p> <strong>All books:</strong></p>
+            {% for book in books %}
+              <div class="card">
+                  {{book.book_title}}, {{book.book_author}}
+            </div>
+            {% endfor %}
      </div>
-        
+ </div>
 </body>
 
 </html>

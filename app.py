@@ -85,7 +85,7 @@ def verify_login():
 def log_out():
 
 	session.clear()
-	return redirect(url_for('login'))
+	return render_template('template.html', books=GlobalLibrary.books)
 
 @app.route('/delete/<key>')
 def delete_book(key):
@@ -118,6 +118,18 @@ def prolong(book_id):
 
 @app.route('/create-account', methods = ['POST'])
 def create_account():
+
+	users_data = DC.get_data(CONSTANTS.USERS_TABLE)
+
+	for user_id in users_data:
+		user = User.empty()
+
+		user.load(CONSTANTS.USERS_TABLE + '/' + user_id)
+		if user.login == request.form['login']:
+			return 'User already exists!'
+		
+
+
 
 
 	user = User(

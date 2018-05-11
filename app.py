@@ -130,7 +130,7 @@ def create_account():
 
 	user.save(CONSTANTS.USERS_TABLE)
 
-	return 'Zapisano, kurwiu'
+	return redirect(url_for('login'))
 
 
 if __name__ == '__main__':

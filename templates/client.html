@@ -39,7 +39,9 @@
                 </div>
                 <div class="card-content">
                   <div class="example">
+                    {% if book.book_reservation==False %}
                     <a href="/reserve/{{book.book_ID}}" class="btn btn-primary btn-ghost">Make reservation</a>
+                    {% endif %}
                   </div>
                 </div>
               </div>

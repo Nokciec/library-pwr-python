@@ -59,9 +59,9 @@ def add_book():
 				request.form['number_of_pages']
 			).save(CONSTANTS.LIBRARY_TABLE)
 
-		return 'Zapisano, kurwiu'
+		return redirect(url_for('admin'))
 	else:
-		return 'Nie kombinuj...'
+		return 'You are not allowed...'
 
 
 @app.route('/verify-login', methods = ['POST'])

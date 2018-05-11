@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Client's site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for("static", filename='hack.css') }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename='dark-grey.css') }}">
+  </head>
+  <body class="hack dark-grey">
+    {% include 'navbar.html' %}
+    {% if session['user_type']=='client' %}
+      <div class="">
+        <div class="grid">
+          <div class="cell -1of12"></div>
+          <div class="cell -5of12">
+            <p> <strong>All books:</strong></p>
+            {% for book in books %}
+              <div class="card">
+                <header class="card-header">
+                  {{book.book_title}}, {{book.book_author}}
+                </header>
+                <div class="card-content">
+                  <div class="inner">
+                    <div class="grid">
+                      <div class="cell -6of12">
+                        Publication date: {{book.book_publicationDate}}<br/>
+                        Publication place: {{book.book_publicationPlace}}<br/>
+                        Publisher: {{book.book_publisher}}<br/>
+                        Number of pages: {{book.book_pagesNumber}}<br/>
+                        ISBN: {{book.book_ISBN}}
+                      </div>
+                      <div class="cell -6of12">
+                        Availability: {{book.book_availability}}<br>
+                        Reservation: {{book.book_reservation}}<br>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="card-content">
+                  <div class="example">
+                    <a href="/reserve/{{book.book_ID}}" class="btn btn-primary btn-ghost">Make reservation</a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="cell -1of12"></div>
+          <div class="cell -4of12">
+            <p> <strong>Manage books:</strong></p>
+            {% for book in books %}
+              {% if book.book_borrower_login == session['username'] %}
+                <div class="card">
+                  <header class="card-header">
+                    {{book.book_title}}, {{book.book_author}}
+                  </header>
+                  <div class="card-content">
+                    <div class="inner">
+                      <div class="grid">
+                        <div class="cell -6of12">
+                          Publication date: {{book.book_publicationDate}}<br/>
+                          Publication place: {{book.book_publicationPlace}}<br/>
+                          Publisher: {{book.book_publisher}}<br/>
+                          Number of pages: {{book.book_pagesNumber}}<br/>
+                          ISBN: {{book.book_ISBN}}
+                        </div>
+                        <div class="cell -6of12">
+                            Availability: {{book.book_availability}}<br>
+                            Start date: {{book.book_startdate}}<br>
+                            End date: {{book.book_enddate}}<br>
+                            Reservation: {{book.book_reservation}}<br>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="card-content">
+                    <div class="example">
+                      <a href="/prolong/{{book.book_ID}}" class="btn btn-primary btn-ghost">Prolong</a>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          <p> <strong>Your reservations:</strong></p>
+            {% for book in books %}
+              {% if book.book_reserver_login == session['username'] %}
+                <div class="card">
+                  <header class="card-header">
+                    {{book.book_title}}, {{book.book_author}}
+                  </header>
+                  <div class="card-content">
+                    <div class="inner">
+                      <div class="grid">
+                        <div class="cell -6of12">
+                          Publication date: {{book.book_publicationDate}}<br/>
+                          Publication place: {{book.book_publicationPlace}}<br/>
+                          Publisher: {{book.book_publisher}}<br/>
+                          Number of pages: {{book.book_pagesNumber}}<br/>
+                          ISBN: {{book.book_ISBN}}
+                        </div>
+                        <div class="cell -6of12">
+                            Availability: {{book.book_availability}}<br>
+                            Reservation: {{book.book_reservation}}<br>
+                            Reserver's login: {{book.book_reserver_login}}<br>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                
+              {% endif %}
+              {% endfor %}
+            
+            
+          </div>
+          <div class="cell -1of12"></div>
+        </div>
+      </div>
+    {% endif %}
+  </body>
+</html>

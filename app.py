@@ -5,17 +5,22 @@ import CONSTANTS
 from Book import Book
 from Library import Library
 from DatabaseConnection import DatabaseConnection as DC
+from User import User as User
 
 app = Flask(__name__)
 app.secret_key = 'something'
 
 
+# Bad global stuff ahead
+
+GlobalLibrary = Library(CONSTANTS.LIBRARY_TABLE)
+
 @app.route('/')
 def homepage():
 
-		library_books = Library(CONSTANTS.LIBRARY_TABLE)
+		global GlobalLibrary
 
-		return render_template('template.html', books=library_books.books)
+		return render_template('template.html', books=GlobalLibrary.books)
 
 
 @app.route('/login')
@@ -29,9 +34,16 @@ def register():
 
 @app.route('/admin')
 def admin():
-		library_books = Library(CONSTANTS.LIBRARY_TABLE)
+		global GlobalLibrary
 
-		return render_template('admin.html', books=library_books.books)
+		return render_template('admin.html', books=GlobalLibrary.books)
+
+@app.route('/client')
+def client():
+		global GlobalLibrary
+
+		return render_template('client.html', books=GlobalLibrary.books)
+
 
 @app.route('/add-book', methods = ['POST'])
 def add_book():
@@ -80,6 +92,45 @@ def delete_book(key):
 	DC.delete_data('/library', key)
 	return redirect(url_for('admin'))
 
+@app.route('/rent/<book_id>/<login>')
+def rent_book(book_id, login):
+	global  GlobalLibrary
+	GlobalLibrary.rent_book(book_id, login)
+	return redirect(url_for('admin'))
+
+@app.route('/return/<book_id>')
+def return_book(book_id):
+	global GlobalLibrary
+	GlobalLibrary.return_book(book_id)
+	return redirect(url_for('admin'))
+
+@app.route('/reserve/<book_id>')
+def reserve_book(book_id):
+	global GlobalLibrary
+	GlobalLibrary.reserve_book(book_id)
+	return redirect(url_for('client'))
+
+@app.route('/prolong/<book_id>')
+def prolong(book_id):
+	global GlobalLibrary
+	GlobalLibrary.prolong(book_id)
+	return redirect(url_for('client'))
+
+@app.route('/create-account', methods = ['POST'])
+def create_account():
+
+
+	user = User(
+			request.form['login'],
+			request.form['password'],
+			request.form['name'],
+			request.form['surname'],
+			True if request.form['account_type'] == 'true' else False
+		)
+
+	user.save(CONSTANTS.USERS_TABLE)
+
+	return 'Zapisano, kurwiu'
 
 
 if __name__ == '__main__':

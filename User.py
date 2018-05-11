@@ -10,7 +10,12 @@ class User(DataModel):
 		surname,
 		is_admin
 		):
-		pass
+		self.login = login
+		self.password = password
+		self.name = name
+		self.surname = surname
+		self.is_admin = is_admin
+		
 
 	@classmethod
 	def empty(cls):

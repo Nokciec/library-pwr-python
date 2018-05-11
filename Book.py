@@ -55,7 +55,7 @@ class Book(DataModel):
 		):
 
 		return Book(
-		0, #TODO: CHECK
+		0,
 		book_title,
 		book_author,
 		book_ISBN,

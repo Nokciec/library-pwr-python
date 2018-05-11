@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for("static", filename='hack.css') }}">
     <link rel="stylesheet" href="{{ url_for("static", filename='dark-grey.css') }}">
+
+
+    <script type="text/javascript">
+      
+      function rent_book(book_ID) {
+        let login = prompt('Enter borrower\'s login:');
+
+        window.location = '/rent/' + book_ID + '/' + login;
+      }
+
+    </script>
   </head>
   <body class="hack dark-grey">
     {% include 'navbar.html' %}
@@ -30,16 +41,7 @@
                         ISBN: {{book.book_ISBN}}
                       </div>
                       <div class="cell -6of12">
-                          <!--
-                            Availability: {{book.book_availability}}<br/>
-                            Borrower login: {{book.book_borrower_login}}<br/>
-                            Start date: {{book.book_startdate}}<br/>
-                            End date: {{book.book_enddate}}<br/>
-                            Reservation: {{book.book_reservation}}<br/>
-                            Reserver's login: {{book.book_reserve_login}}
-                          -->
-
-                        {% if book.book_availability == True %}
+                          {% if book.book_availability == True %}
                           {% if book.book_reservation==False %}
                             Availability: {{book.book_availability}}<br>
                             Reservation: {{book.book_reservation}}<br>
@@ -47,7 +49,7 @@
                           {% if book.book_reservation==True %}
                             Availability: {{book.book_availability}}<br>
                             Reservation: {{book.book_reservation}}<br>
-                            Reserver's login: {{book.book_reserve_login}}<br>
+                            Reserver's login: {{book.book_reserver_login}}<br>
                           {% endif %}
                         {% else %}
                           {% if book.book_reservation==True %}
@@ -56,7 +58,7 @@
                             Start date: {{book.book_startdate}}<br>
                             End date: {{book.book_enddate}}<br>
                             Reservation: {{book.book_reservation}}<br>
-                            Reserver's login: {{book.book_reserve_login}}<br>
+                            Reserver's login: {{book.book_reserver_login}}<br>
                           {% endif %}
                           {% if book.book_reservation==False %}
                             Availability: {{book.book_availability}}<br>
@@ -74,8 +76,8 @@
                 <div class="card-content">
                   <div class="example">
                   <a href="/delete/{{book.book_ID}}" class="btn btn-error btn-ghost">Delete</a>
-                  <a class="btn btn-warning btn-ghost">Rent</a>
-                  <a class="btn btn-primary btn-ghost">Return</a>
+                  <a class="btn btn-warning btn-ghost" onclick="rent_book('{{book.book_ID}}')">Rent</a>
+                  <a href="/return/{{book.book_ID}}" class="btn btn-primary btn-ghost">Return</a>
                   </div>
                 </div>
               </div>

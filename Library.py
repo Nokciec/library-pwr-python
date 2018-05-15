@@ -10,6 +10,8 @@ class Library(BookList):
 
 	def add_book(self,book):
 		book.save(self.path)
+		
+		self.load_books()
 
 	def delete_book(self, book):
 		DC.delete_data(self.path, book.book_ID)

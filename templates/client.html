@@ -40,7 +40,7 @@
                 <div class="card-content">
                   <div class="example">
                     {% if book.book_reservation==False %}
-                    <a href="/reserve/{{book.book_ID}}" class="btn btn-primary btn-ghost">Make reservation</a>
+                      <a href="/reserve/{{book.book_ID}}" class="btn btn-primary btn-ghost">Make reservation</a>
                     {% endif %}
                   </div>
                 </div>
@@ -67,10 +67,10 @@
                           ISBN: {{book.book_ISBN}}
                         </div>
                         <div class="cell -6of12">
-                            Availability: {{book.book_availability}}<br>
-                            Start date: {{book.book_startdate}}<br>
-                            End date: {{book.book_enddate}}<br>
-                            Reservation: {{book.book_reservation}}<br>
+                          Availability: {{book.book_availability}}<br>
+                          Start date: {{book.book_startdate}}<br>
+                          End date: {{book.book_enddate}}<br>
+                          Reservation: {{book.book_reservation}}<br>
                         </div>
                       </div>
                     </div>
@@ -84,7 +84,7 @@
                 </div>
               {% endif %}
             {% endfor %}
-          <p> <strong>Your reservations:</strong></p>
+            <p> <strong>Your reservations:</strong></p>
             {% for book in books %}
               {% if book.book_reserver_login == session['username'] %}
                 <div class="card">
@@ -102,23 +102,23 @@
                           ISBN: {{book.book_ISBN}}
                         </div>
                         <div class="cell -6of12">
-                            Availability: {{book.book_availability}}<br>
-                            Reservation: {{book.book_reservation}}<br>
-                            Reserver's login: {{book.book_reserver_login}}<br>
+                          Availability: {{book.book_availability}}<br>
+                          Reservation: {{book.book_reservation}}<br>
+                          Reserver's login: {{book.book_reserver_login}}<br>
                         </div>
                       </div>
                     </div>
                     
                   </div>
-                
-              {% endif %}
+                  
+                {% endif %}
               {% endfor %}
-            
-            
+              
+              
+            </div>
+            <div class="cell -1of12"></div>
           </div>
-          <div class="cell -1of12"></div>
         </div>
-      </div>
-    {% endif %}
-  </body>
-</html>
+      {% endif %}
+    </body>
+  </html>

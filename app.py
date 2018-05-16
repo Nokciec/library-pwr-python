@@ -129,9 +129,6 @@ def create_account():
 			return 'User already exists!'
 		
 
-
-
-
 	user = User(
 			request.form['login'],
 			request.form['password'],

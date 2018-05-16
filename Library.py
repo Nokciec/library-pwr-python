@@ -15,6 +15,7 @@ class Library(BookList):
 
 	def delete_book(self, book):
 		DC.delete_data(self.path, book.book_ID)
+		self.load_books()
 
 	def rent_book(self,book_id,login):
 		book_path = self.path +'/'+ book_id + '/'

@@ -49,7 +49,7 @@ def client():
 def add_book():
 
 	if session['user_type'] == 'admin':
-		Book.create_new_library_book(
+		new_book = Book.create_new_library_book(
 				request.form['title'],
 				request.form['author'],
 				request.form['ISBN'],
@@ -57,7 +57,9 @@ def add_book():
 				request.form['publication_place'],
 				request.form['publisher'],
 				request.form['number_of_pages']
-			).save(CONSTANTS.LIBRARY_TABLE)
+			)
+		global GlobalLibrary
+		GlobalLibrary.add_book(new_book)
 
 		return redirect(url_for('admin'))
 	else:

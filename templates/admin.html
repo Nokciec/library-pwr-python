@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for("static", filename='hack.css') }}">
     <link rel="stylesheet" href="{{ url_for("static", filename='dark-grey.css') }}">
-
-
     <script type="text/javascript">
-      
-      function rent_book(book_ID) {
-        let login = prompt('Enter borrower\'s login:');
-
-        window.location = '/rent/' + book_ID + '/' + login;
-      }
+    
+    function rent_book(book_ID) {
+    let login = prompt('Enter borrower\'s login:');
+    window.location = '/rent/' + book_ID + '/' + login;
+    }
 
     </script>
   </head>
@@ -41,7 +38,7 @@
                         ISBN: {{book.book_ISBN}}
                       </div>
                       <div class="cell -6of12">
-                          {% if book.book_availability == True %}
+                        {% if book.book_availability == True %}
                           {% if book.book_reservation==False %}
                             Availability: {{book.book_availability}}<br>
                             Reservation: {{book.book_reservation}}<br>
@@ -71,18 +68,16 @@
                       </div>
                     </div>
                   </div>
-                  
                 </div>
                 <div class="card-content">
                   <div class="example">
-                  <a href="/delete/{{book.book_ID}}" class="btn btn-error btn-ghost">Delete</a>
-                  <a class="btn btn-warning btn-ghost" onclick="rent_book('{{book.book_ID}}')">Rent</a>
-                  <a href="/return/{{book.book_ID}}" class="btn btn-primary btn-ghost">Return</a>
+                    <a href="/delete/{{book.book_ID}}" class="btn btn-error btn-ghost">Delete</a>
+                    <a class="btn btn-warning btn-ghost" onclick="rent_book('{{book.book_ID}}')">Rent</a>
+                    <a href="/return/{{book.book_ID}}" class="btn btn-primary btn-ghost">Return</a>
                   </div>
                 </div>
               </div>
             <hr> {% endfor %}
-            
           </div>
           <div class="cell -1of12"></div>
           <div class="cell -3of12">

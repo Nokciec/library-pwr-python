@@ -1,4 +1,8 @@
-# Kod klas C++
+# 1. zalozenia i opis funkcjonalny programu
+# 2. diagramy UML
+## a) diagram przypadkow uzycia
+## b) diagram klas
+# 3. Kod klas C++
 z kodu klas zostaly usuniete fragmenty dotyczaje GUI.
 #### addBookForm class
 ```c++
@@ -239,10 +243,22 @@ Searches user in database.
     userManager();
 };
 ```
-# Conclusions
+# 4. Schematy blokowe oraz kod wlasnych funkcji 
+schemat blokowy jeden na pewno
+# 5. Opis uzytkowy programu C++ 
+//opis jak poruszać się po programie wraz z zrzutami ekranu (zwłaszcza opis menu),wymagania techniczne i uwagi instalacyjne (w przypadku skomplikowanej instalacji,
+projekt można wzbogacić opracowanym instalatorem).
+# 6. Listing kodu C++ - wraz z komentarzami
+pliki cpp
+# 7. Wnioski
 - Realizacja projektu uswiadomila mi, jak wazne jest oddzielenie warstwy logicznej programu od wartwy graficznej.
 - W pythonie o wiele prostsze jest instalowanie zewnetrznych bibliotek 
 - wirtualne srodowisko pythona (virtualenv) jest zupelnie inne niz c++'owskie dynamiczne/statyczne linkowanie bibliotek
 - //deploy aplikacji webowej opartej na dockerze jest interesujacym konceptem
 - w przypadku pythona oddzielenie warswty logicznej od graficznej jest wymuszone, gdzie w c++ nie (da sie bez tego obejsc, chociaz odbywa sie to kosztem przejrzystosci kodu)
 - 
+
+
+
+dotyczące realizacji własnego programu. Tutaj należy napisać co udało się państwu
+oprogramować, oraz czego zabrakło a chcielibyście jeszcze zaimplementować.

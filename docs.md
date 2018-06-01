@@ -1,8 +1,18 @@
 # 1. Zalozenia i opis funkcjonalny programu
 ##### Poruszany problem:
 Program będzie obsługiwał system zarządzania biblioteką.
-Inline-style: 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://i.imgur.com/BmS47tO.png) 
+^ screen1 main
+![alt text](https://i.imgur.com/KnS2zRj.png) 
+^ screen2 rejestracja
+![alt text](https://i.imgur.com/qQBTneO.png) 
+^ screen3 katalog smiertelnika
+![alt text](https://i.imgur.com/5y6i7AF.png)
+^ screen4 logowanie
+![alt text](https://i.imgur.com/uRibVVx.png)
+^screen5 wyglad bibliotekarza
+![alt text](https://i.imgur.com/bpitYQ6.png)
+^ screen wybor smiertelnika
 
 ##### Użytkownik docelowy:
 Program dedykowany jest dla klientów biblioteki oraz jej pracowników.

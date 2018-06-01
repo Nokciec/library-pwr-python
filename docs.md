@@ -1,5 +1,5 @@
 # Kod klas C++
-z kodu klas zostaly usuniete fragmenty dotyczaje gui
+z kodu klas zostaly usuniete fragmenty dotyczaje GUI.
 #### addBookForm class
 ```c++
 class addbookform : public QDialog
@@ -239,7 +239,7 @@ Searches user in database.
     userManager();
 };
 ```
-#conclusions
+# Conclusions
 - Realizacja projektu uswiadomila mi, jak wazne jest oddzielenie warstwy logicznej programu od wartwy graficznej.
 - W pythonie o wiele prostsze jest instalowanie zewnetrznych bibliotek 
 - wirtualne srodowisko pythona (virtualenv) jest zupelnie inne niz c++'owskie dynamiczne/statyczne linkowanie bibliotek

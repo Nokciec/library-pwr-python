@@ -1,9 +1,27 @@
-# 1. zalozenia i opis funkcjonalny programu
-# 2. diagramy UML
+# 1. Zalozenia i opis funkcjonalny programu
+##### Poruszany problem:
+Program będzie obsługiwał system zarządzania biblioteką.
+Inline-style: 
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
+##### Użytkownik docelowy:
+Program dedykowany jest dla klientów biblioteki oraz jej pracowników.
+##### Założenia:
+Klientom zostanie umożliwione m. in.: rejestracja, logowanie, przeglądanie zasobów
+biblioteki, rezerwacja pozycji oraz prolongowanie wypożyczonych już dzieł.
+Pracownicy będą mogli wypożyczać zasoby klientom, dodawać nowe pozycje oraz usuwać istniejace. Tak jak i klienci będą mieli dostęp do rejestracji, logowania oraz katalogu bibliotek.
+##### Dodatkowe założenia:
+Klient będzie mógł wyświetlić swój profil, a w nim sprawdzić historię wypożyczeń, listę swoich rezerwacji, usunąć swoje konto oraz wylogować się.
+##### Użyte języki, środowiska i frameworki:
+- C++, Qt Creator
+- Python, CSS, HTML, Jinja2, FireBase,
+# 2. Diagramy UML
 ## a) diagram przypadkow uzycia
+//do wklejenia
 ## b) diagram klas
+//do zrobienia i wklejenia
 # 3. Kod klas C++
-z kodu klas zostaly usuniete fragmenty dotyczaje GUI.
+Z kodu klas zostaly usuniete fragmenty dotyczace GUI.
 #### addBookForm class
 ```c++
 class addbookform : public QDialog

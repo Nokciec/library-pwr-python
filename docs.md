@@ -1,18 +1,6 @@
 # 1. Zalozenia i opis funkcjonalny programu
 ##### Poruszany problem:
 Program będzie obsługiwał system zarządzania biblioteką.
-![alt text](https://i.imgur.com/BmS47tO.png) 
-^ screen1 main
-![alt text](https://i.imgur.com/KnS2zRj.png) 
-^ screen2 rejestracja
-![alt text](https://i.imgur.com/qQBTneO.png) 
-^ screen3 katalog smiertelnika
-![alt text](https://i.imgur.com/5y6i7AF.png)
-^ screen4 logowanie
-![alt text](https://i.imgur.com/uRibVVx.png)
-^screen5 wyglad bibliotekarza
-![alt text](https://i.imgur.com/bpitYQ6.png)
-^ screen wybor smiertelnika
 
 ##### Użytkownik docelowy:
 Program dedykowany jest dla klientów biblioteki oraz jej pracowników.
@@ -276,6 +264,32 @@ schemat blokowy jeden na pewno
 # 5. Opis uzytkowy programu C++ 
 //opis jak poruszać się po programie wraz z zrzutami ekranu (zwłaszcza opis menu),wymagania techniczne i uwagi instalacyjne (w przypadku skomplikowanej instalacji,
 projekt można wzbogacić opracowanym instalatorem).
+![alt text](https://i.imgur.com/BmS47tO.png) 
+^ screen1 main good
+![alt text](https://i.imgur.com/KnS2zRj.png) 
+^ screen2 rejestracja good
+![alt text](https://i.imgur.com/qQBTneO.png) 
+^ screen3 katalog smiertelnika good
+![alt text](https://i.imgur.com/5y6i7AF.png)
+^ screen4 logowanie form good
+![alt text](https://i.imgur.com/uRibVVx.png)
+^screen11 wyglad uzytkownika good
+![alt text](https://i.imgur.com/bpitYQ6.png)
+^ screen12 wybor smiertelnika
+![alt text](https://i.imgur.com/LX2JGKP.png)
+^wrong password screen
+![alt text](https://i.imgur.com/VMT9OND.png)
+^wrong login or password screen
+![alt text](https://i.imgur.com/VWsY5qt.png)
+^screen wybor bibliotekarza big
+![alt text](https://i.imgur.com/GUUM8m7.png) 
+^ biblitekarz double click before delete small
+![alt text](https://i.imgur.com/q0FFA6m.png)
+^ biblitekarz small 
+![alt text](https://i.imgur.com/dLtnP1G.png)
+^ biblitekarz pick on the right, see availability and dates
+![alt text](https://i.imgur.com/2mtZ8EB.png)
+^ registration not matching passwords
 # 6. Listing kodu C++ - wraz z komentarzami
 pliki cpp
 # 7. Wnioski

@@ -1,7 +1,6 @@
 # 1. Zalozenia i opis funkcjonalny programu
 ##### Poruszany problem:
 Program będzie obsługiwał system zarządzania biblioteką.
-
 ##### Użytkownik docelowy:
 Program dedykowany jest dla klientów biblioteki oraz jej pracowników.
 ##### Założenia:
@@ -15,9 +14,9 @@ Klient będzie mógł wyświetlić swój profil, a w nim sprawdzić historię wy
 - Python, CSS, HTML, Jinja2, FireBase,
 # 2. Diagramy UML
 ## a) diagram przypadkow uzycia
-//do wklejenia
+do wklejenia po drobnych przerobkach
 ## b) diagram klas
-//do zrobienia i wklejenia
+do zrobienia i wklejenia
 # 3. Kod klas C++
 Z kodu klas zostaly usuniete fragmenty dotyczace GUI.
 #### addBookForm class
@@ -264,32 +263,37 @@ schemat blokowy jeden na pewno
 # 5. Opis uzytkowy programu C++ 
 //opis jak poruszać się po programie wraz z zrzutami ekranu (zwłaszcza opis menu),wymagania techniczne i uwagi instalacyjne (w przypadku skomplikowanej instalacji,
 projekt można wzbogacić opracowanym instalatorem).
-![alt text](https://i.imgur.com/BmS47tO.png) 
-^ screen1 main good
-![alt text](https://i.imgur.com/KnS2zRj.png) 
-^ screen2 rejestracja good
-![alt text](https://i.imgur.com/qQBTneO.png) 
-^ screen3 katalog smiertelnika good
-![alt text](https://i.imgur.com/5y6i7AF.png)
-^ screen4 logowanie form good
-![alt text](https://i.imgur.com/uRibVVx.png)
-^screen11 wyglad uzytkownika good
-![alt text](https://i.imgur.com/bpitYQ6.png)
-^ screen12 wybor smiertelnika
-![alt text](https://i.imgur.com/LX2JGKP.png)
-^wrong password screen
-![alt text](https://i.imgur.com/VMT9OND.png)
-^wrong login or password screen
-![alt text](https://i.imgur.com/VWsY5qt.png)
-^screen wybor bibliotekarza big
-![alt text](https://i.imgur.com/GUUM8m7.png) 
-^ biblitekarz double click before delete small
-![alt text](https://i.imgur.com/q0FFA6m.png)
-^ biblitekarz small 
-![alt text](https://i.imgur.com/dLtnP1G.png)
-^ biblitekarz pick on the right, see availability and dates
-![alt text](https://i.imgur.com/2mtZ8EB.png)
-^ registration not matching passwords
+
+Po uruchomieniu aplikacji uzytkownikowi ukazuje sie menu bibliteki, w ktorym moze sie zarejestrowac, zalogowac lub wybrac opcje "Show Catalogue", ktora wyswietli tytuly wszystkich dostepnych ksiazek. 
+
+|![](https://i.imgur.com/BmS47tO.png)  |  ![](https://i.imgur.com/qQBTneO.png)|
+:-------------------------:|:-------------------------:
+|Menu glowne            |   Menu po wybraniu opcji wyswietlenia katalogu|
+
+Po wybraniu opcji rejestracji wyswietla sie formularz do wypelnienia. Jezeli rejestracji probuje dokonac uzytkownik, ktory istnieje juz w bazie, program informuje o tym. Zostawienie ktoregos z pol pustym rowniez wyswietla ostrzezenie. Dodatkowym udogodnieniem, ktore ulatwia rejestracje jest opcja, ktora sprawdza czy oba podane hasla sa identyczne. 
+
+|![](https://i.imgur.com/KnS2zRj.png)  |  ![](https://i.imgur.com/2mtZ8EB.png)|
+:-------------------------:|:-------------------------:
+|Menu rejestracji            |   Panel rejestracyjny z przykladowymi danymi|
+
+Po wybraniu opcji logowania wyswietla sie formularzn do wpisania loginu i hasla. W przypadku wpisania zlego hasla, otrzymujemy komunikat o tym informujacy, lub w przypadku gdy program podejrzewa ze podanego uzytkownika nie ma w bazie, rowniez otrzymujemy stosowny komunikat.
+
+|![](https://i.imgur.com/5y6i7AF.png)  |  ![](https://i.imgur.com/LX2JGKP.png) ![](https://i.imgur.com/VMT9OND.png)|
+:-------------------------:|:-------------------------:
+|Menu logowania          |   Przykladowe komunikaty|
+
+Po zalogowaniu sie jako klient uzyskujemy dostep do podstawowych funkcji programu. Otrzymujemy katalog ksiazek wraz z wiekszoscia ich danych: autorem, numerem ISBN, liczba stron, informacje dotyczace publikacji (miejsce, czas i wydawnictwo) oraz dostepnosci ksiazki (czy jest wypozyczona, czy jest zarezerwowana). Mozemy zarezerwowac ksiazke, ktora chcemy wypozyczyc lub prolongowac wypozyczona juz przez nas pozycje. Po wykonaniu czynnosci ktore nas interesuja mozemy sie wylogowac. 
+
+| ![](https://i.imgur.com/bpitYQ6.png)  |
+|---|
+| Wyglad programu dla klienta |
+
+Po zalogowaniu sie jako bibliotekarz uzyskujemy dostep do wiekszosci funkcji programu. Otrzymujemy katalog ksiazek wraz z ich wszystkimi danymi: autorem, numerem ISBN, liczba stron, informacje dotyczace publikacji (miejsce, czas i wydawnictwo) oraz dostepnosci ksiazki (czy jest wypozyczona, kto ja wypozyczyl, od kiedy i do kiedy, czy jest zarezerwowana, jesli tak to przez kogo). Mamy mozliwosc dodania nowej ksiazki, usuniecia istniejacej lub wypozyczenia/zarezerwowania jej istniejacemu uzytkownikowi. Po wykonaniu czynnosci ktore nas interesuja mozemy sie wylogowac.
+
+| ![](https://i.imgur.com/VWsY5qt.png)  |
+|---|
+| Wyglad programu dla bibliotekarza |
+
 # 6. Listing kodu C++ - wraz z komentarzami
 pliki cpp
 # 7. Wnioski

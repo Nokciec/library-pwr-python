@@ -11,7 +11,7 @@ Pracownicy będą mogli wypożyczać zasoby klientom, dodawać nowe pozycje oraz
 Klient będzie mógł wyświetlić swój profil, a w nim sprawdzić historię wypożyczeń, listę swoich rezerwacji, usunąć swoje konto oraz wylogować się.
 ##### Użyte języki, środowiska i frameworki:
 - C++, Qt Creator
-- Python, CSS, HTML, Jinja2, FireBase,
+- Python, CSS, HTML, Jinja2, FireBase, Flask
 # 2. Diagramy UML
 ## a) diagram przypadków użycia
 ![](https://i.imgur.com/piaUrhz.png)

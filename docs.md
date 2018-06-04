@@ -1,4 +1,4 @@
-# 1. Zalozenia i opis funkcjonalny programu
+# 1. Założenia i opis funkcjonalny programu
 ##### Poruszany problem:
 Program będzie obsługiwał system zarządzania biblioteką.
 ##### Użytkownik docelowy:
@@ -6,19 +6,19 @@ Program dedykowany jest dla klientów biblioteki oraz jej pracowników.
 ##### Założenia:
 Klientom zostanie umożliwione m. in.: rejestracja, logowanie, przeglądanie zasobów
 biblioteki, rezerwacja pozycji oraz prolongowanie wypożyczonych już dzieł.
-Pracownicy będą mogli wypożyczać zasoby klientom, dodawać nowe pozycje oraz usuwać istniejace. Tak jak i klienci będą mieli dostęp do rejestracji, logowania oraz katalogu bibliotek.
+Pracownicy będą mogli wypożyczać zasoby klientom, dodawać nowe pozycje oraz usuwać istniejące. Tak jak i klienci będą mieli dostęp do rejestracji, logowania oraz katalogu bibliotek.
 ##### Dodatkowe założenia:
 Klient będzie mógł wyświetlić swój profil, a w nim sprawdzić historię wypożyczeń, listę swoich rezerwacji, usunąć swoje konto oraz wylogować się.
 ##### Użyte języki, środowiska i frameworki:
 - C++, Qt Creator
 - Python, CSS, HTML, Jinja2, FireBase,
 # 2. Diagramy UML
-## a) diagram przypadkow uzycia
+## a) diagram przypadków użycia
 ![](https://i.imgur.com/piaUrhz.png)
 ## b) diagram klas
 do zrobienia i wklejenia
 # 3. Kod klas C++
-Z kodu klas zostaly usuniete fragmenty dotyczace GUI.
+Z kodu klas zostały usunięte fragmenty dotyczące GUI.
 ### AddBookForm class
 ```c++
 class addbookform : public QDialog
@@ -259,55 +259,55 @@ Searches user in database.
     userManager();
 };
 ```
-# 4. Schematy blokowe oraz kod wlasnych funkcji 
-Ponizsze schematy blokowe ukazuja dzialanie dwoch wybranych przeze mnie funkcji. Jedna z nich jest uzywana do wyswietlania wszystkich ksiazek, natomiast druga sluzy do rejestrowania nowego uzytkownika.
+# 4. Schematy blokowe oraz kod własnych funkcji 
+Poniższe schematy blokowe ukazują działanie dwóch wybranych przeze mnie funkcji. Jedna z nich jest używana do wyświetlania wszystkich książek, natomiast druga służy do rejestrowania nowego użytkownika.
 |![](https://i.imgur.com/iNPPzvA.png)  |  ![](https://i.imgur.com/cnyoSMv.png)|
 :-------------------------:|:-------------------------:
-|Schemat blokowy funkcji showBooks           | Schemat blokowy funkcji rejestrujacej uzytkownika|
-# 5. Opis uzytkowy programu C++ 
-Poruszanie sie po programie jest bardzo intuicyjne. Po uruchomieniu aplikacji uzytkownikowi ukazuje sie menu bibliteki, w ktorym moze sie zarejestrowac, zalogowac lub wybrac opcje "Show Catalogue", ktora wyswietli tytuly wszystkich dostepnych ksiazek. 
+|Schemat blokowy funkcji showBooks           | Schemat blokowy funkcji rejestrującej użytkownika|
+# 5. Opis użytkowy programu C++ 
+Poruszanie się po programie jest bardzo intuicyjne. Po uruchomieniu aplikacji użytkownikowi ukazuje się menu biblioteki, w którym może się zarejestrować, zalogować lub wybrać opcje "Show Catalogue", która wyświetli tytuły wszystkich dostępnych książek. 
 
 |![](https://i.imgur.com/BmS47tO.png)  |  ![](https://i.imgur.com/qQBTneO.png)|
 :-------------------------:|:-------------------------:
-|Menu glowne            |   Menu po wybraniu opcji wyswietlenia katalogu|
+|Menu główne            |   Menu po wybraniu opcji wyświetlenia katalogu|
 
-Po wybraniu opcji rejestracji wyswietla sie formularz do wypelnienia. Jezeli rejestracji probuje dokonac uzytkownik, ktory istnieje juz w bazie, program informuje o tym. Zostawienie ktoregos z pol pustym rowniez wyswietla ostrzezenie. Dodatkowym udogodnieniem, ktore ulatwia rejestracje jest opcja, ktora sprawdza czy oba podane hasla sa identyczne. 
+Po wybraniu opcji rejestracji wyświetla się formularz do wypełnienia. Jeżeli rejestracji próbuje dokonać użytkownik, który istnieje już w bazie, program informuje o tym. Pozostawienie któregoś z pól pustym również wyświetla ostrzeżenie. Dodatkowym udogodnieniem, które ułatwia rejestracje jest opcja, która sprawdza czy oba podane hasła są identyczne. 
 
 |![](https://i.imgur.com/KnS2zRj.png)  |  ![](https://i.imgur.com/2mtZ8EB.png)|
 :-------------------------:|:-------------------------:
-|Menu rejestracji            |   Panel rejestracyjny z przykladowymi danymi|
+|Menu rejestracji            |   Panel rejestracyjny z przykładowymi danymi|
 
-Po wybraniu opcji logowania wyswietla sie formularzn do wpisania loginu i hasla. W przypadku wpisania zlego hasla, otrzymujemy komunikat o tym informujacy, lub w przypadku gdy program podejrzewa ze podanego uzytkownika nie ma w bazie, rowniez otrzymujemy stosowny komunikat.
+Po wybraniu opcji logowania wyświetla się formularz do wpisania loginu i hasła. W przypadku wpisania złego hasła, otrzymujemy komunikat o tym informujący lub w przypadku, gdy program podejrzewa ze podanego użytkownika nie ma w bazie, również otrzymujemy stosowny komunikat.
 
 |![](https://i.imgur.com/5y6i7AF.png)  |  ![](https://i.imgur.com/LX2JGKP.png) ![](https://i.imgur.com/VMT9OND.png)|
 :-------------------------:|:-------------------------:
-|Menu logowania          |   Przykladowe komunikaty|
+|Menu logowania          |   Przykładowe komunikaty|
 
-Po zalogowaniu sie jako klient uzyskujemy dostep do podstawowych funkcji programu. Otrzymujemy katalog ksiazek wraz z wiekszoscia ich danych: autorem, numerem ISBN, liczba stron, informacje dotyczace publikacji (miejsce, czas i wydawnictwo) oraz dostepnosci ksiazki (czy jest wypozyczona, czy jest zarezerwowana). Mozemy zarezerwowac ksiazke, ktora chcemy wypozyczyc lub prolongowac wypozyczona juz przez nas pozycje. Po wykonaniu czynnosci ktore nas interesuja mozemy sie wylogowac. 
+Po zalogowaniu się jako klient uzyskujemy dostęp do podstawowych funkcji programu. Otrzymujemy katalog książek wraz z większością ich danych: autorem, numerem ISBN, liczba stron, informacje dotyczące publikacji (miejsce, czas i wydawnictwo) oraz dostępności książki (czy jest wypożyczona, czy jest zarezerwowana). Możemy zarezerwować książkę, którą chcemy wypożyczyć lub prolongować wypożyczoną już przez nas pozycje. Po wykonaniu czynności które nas interesują możemy się wylogować. 
 
 | ![](https://i.imgur.com/bpitYQ6.png)  |
 |---|
-| Wyglad programu dla klienta |
+| Wygląd programu dla klienta |
 
-Po zalogowaniu sie jako bibliotekarz uzyskujemy dostep do wiekszosci funkcji programu. Otrzymujemy katalog ksiazek wraz z ich wszystkimi danymi: autorem, numerem ISBN, liczba stron, informacje dotyczace publikacji (miejsce, czas i wydawnictwo) oraz dostepnosci ksiazki (czy jest wypozyczona, kto ja wypozyczyl, od kiedy i do kiedy, czy jest zarezerwowana, jesli tak to przez kogo). Mamy mozliwosc dodania nowej ksiazki, usuniecia istniejacej lub wypozyczenia/zarezerwowania jej istniejacemu uzytkownikowi. Po wykonaniu czynnosci ktore nas interesuja mozemy sie wylogowac.
+Po zalogowaniu się jako bibliotekarz uzyskujemy dostęp do większości funkcji programu. Otrzymujemy katalog książek wraz z ich wszystkimi danymi: autorem, numerem ISBN, liczba stron, informacje dotyczące publikacji (miejsce, czas i wydawnictwo) oraz dostępności książki (czy jest wypożyczona, kto ja wypożyczył, od kiedy i do kiedy, czy jest zarezerwowana, jeśli tak to przez kogo). Mamy możliwość dodania nowej książki, usunięcia istniejącej lub wypożyczenia/zarezerwowania jej istniejącemu użytkownikowi. Po wykonaniu czynności które nas interesują możemy się wylogować.
 
 | ![](https://i.imgur.com/VWsY5qt.png)  |
 |---|
-| Wyglad programu dla bibliotekarza |
+| Wygląd programu dla bibliotekarza |
 
-Do uruchomienia programu w systemie Windows potrzebne sa pliki konfiguracyjne *.dll, ktore znajduja sie w folderze wraz z plikiem wykonywalnym.  
+Do uruchomienia programu w systemie Windows potrzebne są pliki konfiguracyjne *.dll, które znajdują się w folderze wraz z plikiem wykonywalnym.  
 
 # 6. Listing kodu C++ - wraz z komentarzami
 pliki cpp
 # 7. Wnioski
-- Realizacja projektu uswiadomila mi, jak wazne jest oddzielenie warstwy logicznej programu od wartwy graficznej.
-- W pythonie o wiele prostsze jest instalowanie zewnetrznych bibliotek 
-- wirtualne srodowisko pythona (virtualenv) jest zupelnie inne niz c++'owskie dynamiczne/statyczne linkowanie bibliotek
-- //deploy aplikacji webowej opartej na dockerze jest interesujacym konceptem
-- w przypadku pythona oddzielenie warswty logicznej od graficznej jest wymuszone, gdzie w c++ nie (da sie bez tego obejsc, chociaz odbywa sie to kosztem przejrzystosci kodu)
+- Realizacja projektu uświadomiła mi, jak ważne jest oddzielenie warstwy logicznej programu od warstwy graficznej.
+- W pythonie o wiele prostsze jest instalowanie zewnętrznych bibliotek 
+- wirtualne środowisko pythona (virtualenv) jest zupełnie inne niż c++'owskie dynamiczne/statyczne linkowanie bibliotek
+- //deploy aplikacji webowej opartej na dockerze jest interesującym konceptem
+- w przypadku pythona oddzielenie warstwy logicznej od graficznej jest wymuszone, gdzie w c++ nie (da się bez tego obejść, chociaż odbywa się to kosztem przejrzystości kodu)
 - 
 
 
 
 dotyczące realizacji własnego programu. Tutaj należy napisać co udało się państwu
-oprogramować, oraz czego zabrakło a chcielibyście jeszcze zaimplementować.
+oprogramować oraz czego zabrakło a chcielibyście jeszcze zaimplementować.

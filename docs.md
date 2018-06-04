@@ -16,7 +16,7 @@ Klient będzie mógł wyświetlić swój profil, a w nim sprawdzić historię wy
 ## a) diagram przypadków użycia
 ![](https://i.imgur.com/piaUrhz.png)
 ## b) diagram klas
-do zrobienia i wklejenia
+![](https://i.imgur.com/q23vbAP.png)
 # 3. Kod klas C++
 Z kodu klas zostały usunięte fragmenty dotyczące GUI.
 ### AddBookForm class

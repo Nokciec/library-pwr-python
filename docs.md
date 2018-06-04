@@ -278,7 +278,7 @@ Po wybraniu opcji rejestracji wyświetla się formularz do wypełnienia. Jeżeli
 :-------------------------:|:-------------------------:
 |Menu rejestracji            |   Panel rejestracyjny z przykładowymi danymi|
 
-Po wybraniu opcji logowania wyświetla się formularz do wpisania loginu i hasła. W przypadku wpisania złego hasła, otrzymujemy komunikat o tym informujący lub w przypadku, gdy program podejrzewa ze podanego użytkownika nie ma w bazie, również otrzymujemy stosowny komunikat.
+Po wybraniu opcji logowania wyświetla się formularz do wpisania loginu i hasła. W przypadku wpisania złego hasła, otrzymujemy komunikat o tym informujący lub w przypadku, gdy program podejrzewa że podanego użytkownika nie ma w bazie, również otrzymujemy stosowny komunikat.
 
 |![](https://i.imgur.com/5y6i7AF.png)  |  ![](https://i.imgur.com/LX2JGKP.png) ![](https://i.imgur.com/VMT9OND.png)|
 :-------------------------:|:-------------------------:

@@ -157,7 +157,7 @@ Verifies if password and login match. Takes login and password as arguments.
     void verifyPassword(QString user_login, QString user_password);
 };
 ```
-#### MainWindow class
+### MainWindow class
 ```c++
 class MainWindow : public QMainWindow
 {

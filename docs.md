@@ -261,6 +261,7 @@ Searches user in database.
 ```
 # 4. Schematy blokowe oraz kod własnych funkcji 
 Poniższe schematy blokowe ukazują działanie dwóch wybranych przeze mnie funkcji. Jedna z nich jest używana do wyświetlania wszystkich książek, natomiast druga służy do rejestrowania nowego użytkownika.
+
 |![](https://i.imgur.com/iNPPzvA.png)  |  ![](https://i.imgur.com/cnyoSMv.png)|
 :-------------------------:|:-------------------------:
 |Schemat blokowy funkcji showBooks           | Schemat blokowy funkcji rejestrującej użytkownika|

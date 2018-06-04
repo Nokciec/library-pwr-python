@@ -14,12 +14,12 @@ Klient będzie mógł wyświetlić swój profil, a w nim sprawdzić historię wy
 - Python, CSS, HTML, Jinja2, FireBase,
 # 2. Diagramy UML
 ## a) diagram przypadkow uzycia
-do wklejenia po drobnych przerobkach
+![](https://i.imgur.com/piaUrhz.png)
 ## b) diagram klas
 do zrobienia i wklejenia
 # 3. Kod klas C++
 Z kodu klas zostaly usuniete fragmenty dotyczace GUI.
-#### addBookForm class
+### AddBookForm class
 ```c++
 class addbookform : public QDialog
 {
@@ -28,12 +28,12 @@ public:
     ~addbookform();
 private:
     /**
-This function adds a new book. It takes: title, author, ISBN number, publication date, publication place, publisher and number of pages as arguments. 
+Adds a new book. It takes: title, author, ISBN number, publication date, publication place, publisher and number of pages as arguments. 
     */
     void addNewBook(QString title, QString author, QString ISBN, QString publicationDate, QString publicationPlace, QString publisher, QString pagesNumber);
 };
 ```
-### book class
+### Book class
 ```c++
 class Book
 {
@@ -71,7 +71,7 @@ Getters
         std::string getReserveLogin() const{return m_reserveLogin;}
         Book()=default;
 /**
-This function creates a book given its data.
+Creates a book given its data.
 */
         Book(long i_bookID,
              std::string i_title,
@@ -90,7 +90,7 @@ This function creates a book given its data.
 };
 
 ```
-### bookManager class
+### BookManager class
 ```c++
 class bookmanager
 {
@@ -125,7 +125,7 @@ Renews a book given its row
 };
 ```
 
-### class LoginManager
+### LoginManager class
 ```c++
 class LoginManager : public QDialog
 {
@@ -135,13 +135,14 @@ Helper functions
 */
     QString getLogin();
     QString getPassword();
-
-/**
-Helper functions
-*/
-    bool isAccepted;
     bool getAccess() const {return access;}
     int getPermissions() const {return permissions;}
+
+/**
+Helper variable
+*/
+    bool isAccepted;
+
     
 private:
 /**
@@ -156,11 +157,11 @@ Verifies if password and login match. Takes login and password as arguments.
     void verifyPassword(QString user_login, QString user_password);
 };
 ```
-#### class mainwindow
+#### MainWindow class
 ```c++
 class MainWindow : public QMainWindow
 {
-protected:
+public:
     LoginManager *loginmanager;
     User::Type type;
     RegisterManager *registermanager;
@@ -193,7 +194,7 @@ so they take no arguments.
     void logOut();
 };
 ```
-### registermanager class
+### RegisterManager class
 ```c++
 class RegisterManager : public QDialog
 {
@@ -215,7 +216,7 @@ Creates a new user. Takes login, password, name, surname and type as arguments.
     void createNewUser(QString login, QString password, QString name, QString surname, QString type);
 };
 ```
-### user class
+### User class
 ```c++
 class User
 {
@@ -234,7 +235,7 @@ public:
     User();
 };
 ```
-### usermanager class
+### UserManager class
 ```c++
 class userManager
 {
@@ -259,12 +260,12 @@ Searches user in database.
 };
 ```
 # 4. Schematy blokowe oraz kod wlasnych funkcji 
-schemat blokowy jeden na pewno
+Ponizsze schematy blokowe ukazuja dzialanie dwoch wybranych przeze mnie funkcji. Jedna z nich jest uzywana do wyswietlania wszystkich ksiazek, natomiast druga sluzy do rejestrowania nowego uzytkownika.
+|![](https://i.imgur.com/iNPPzvA.png)  |  ![](https://i.imgur.com/cnyoSMv.png)|
+:-------------------------:|:-------------------------:
+|Schemat blokowy funkcji showBooks           | Schemat blokowy funkcji rejestrujacej uzytkownika|
 # 5. Opis uzytkowy programu C++ 
-//opis jak poruszać się po programie wraz z zrzutami ekranu (zwłaszcza opis menu),wymagania techniczne i uwagi instalacyjne (w przypadku skomplikowanej instalacji,
-projekt można wzbogacić opracowanym instalatorem).
-
-Po uruchomieniu aplikacji uzytkownikowi ukazuje sie menu bibliteki, w ktorym moze sie zarejestrowac, zalogowac lub wybrac opcje "Show Catalogue", ktora wyswietli tytuly wszystkich dostepnych ksiazek. 
+Poruszanie sie po programie jest bardzo intuicyjne. Po uruchomieniu aplikacji uzytkownikowi ukazuje sie menu bibliteki, w ktorym moze sie zarejestrowac, zalogowac lub wybrac opcje "Show Catalogue", ktora wyswietli tytuly wszystkich dostepnych ksiazek. 
 
 |![](https://i.imgur.com/BmS47tO.png)  |  ![](https://i.imgur.com/qQBTneO.png)|
 :-------------------------:|:-------------------------:
@@ -293,6 +294,8 @@ Po zalogowaniu sie jako bibliotekarz uzyskujemy dostep do wiekszosci funkcji pro
 | ![](https://i.imgur.com/VWsY5qt.png)  |
 |---|
 | Wyglad programu dla bibliotekarza |
+
+Do uruchomienia programu w systemie Windows potrzebne sa pliki konfiguracyjne *.dll, ktore znajduja sie w folderze wraz z plikiem wykonywalnym.  
 
 # 6. Listing kodu C++ - wraz z komentarzami
 pliki cpp

@@ -11,7 +11,7 @@
 | Grupa zajęciowa: Cz 18:55      &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 	|  &nbsp;  &nbsp;  &nbsp;  &nbsp;  Semestr: 2017/2018 Lato  	|
 | Nazwisko i Imię: Poreba Dominika	&nbsp;| Nr indeksu: 241126     	|
 | Nr grupy projektowej: 	| 80 |
-| Prowadzący: 	| mgr inż. Piotr Lechwowicz	|
+| Prowadzący: 	| mgr inż. Piotr Lechowicz	|
 </center>
 
 ## Temat: Wypozyczalnia ksiazek

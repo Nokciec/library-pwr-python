@@ -52,9 +52,11 @@ public:
     ~addbookform();
 private:
     /**
-Adds a new book. It takes: title, author, ISBN number, publication date, publication place, publisher and number of pages as arguments. 
+Adds a new book. It takes: title, author, ISBN number, publication date, publication place, 
+publisher and number of pages as arguments. 
     */
-    void addNewBook(QString title, QString author, QString ISBN, QString publicationDate, QString publicationPlace, QString publisher, QString pagesNumber);
+    void addNewBook(QString title, QString author, QString ISBN, QString publicationDate, 
+    QString publicationPlace, QString publisher, QString pagesNumber);
 };
 ```
 ### Book class

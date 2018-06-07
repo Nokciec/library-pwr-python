@@ -660,7 +660,8 @@ void bookmanager::reserveABook(int row, QString login)
 }
 
 /**
-Renews a book given its row. Postpones the deadline of book returning by adding 30 days to current date and setting is as a new dealine. Updates database.
+Renews a book given its row. Postpones the deadline of book returning by adding 30 days
+to current date and setting is as a new dealine. Updates database.
 */
 void bookmanager::renewABook(int row)
 {

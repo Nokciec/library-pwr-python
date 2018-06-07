@@ -1,0 +1,1072 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>input</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><center>
+	<h2>
+		Programowanie obiektowe <br>
+		INEW0003P <br>
+		Projekt
+	</h2>
+</center>
+<table>
+<thead>
+<tr>
+<th align="left">Wydział elektroniki</th>
+<th align="right">Kierunek: informatyka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Grupa zajęciowa: Cz 18:55      &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;  &nbsp;  &nbsp; 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td align="right">&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Semestr: 2017/2018 Lato</td>
+</tr>
+<tr>
+<td align="left">Nazwisko i Imię: Poręba Dominika	&nbsp;</td>
+<td align="right">Nr indeksu: 241126</td>
+</tr>
+<tr>
+<td align="left">Nr grupy projektowej:</td>
+<td align="right">60</td>
+</tr>
+<tr>
+<td align="left">Prowadzący:</td>
+<td align="right">mgr inż. Piotr Lechowicz</td>
+</tr>
+</tbody>
+</table>
+<center>
+<h1>TEMAT: <br>
+Wypożyczalnia książek</h1>
+</center>
+<h3>
+Ocena:<br>
+Punkty:<br>
+Data: <br>
+</h3>
+<h1 id="założenia-i-opis-funkcjonalny-programu">1. Założenia i opis funkcjonalny programu</h1>
+<h5 id="poruszany-problem">Poruszany problem:</h5>
+<p>Program będzie obsługiwał system zarządzania biblioteką.</p>
+<h5 id="użytkownik-docelowy">Użytkownik docelowy:</h5>
+<p>Program dedykowany jest dla klientów biblioteki oraz jej pracowników.</p>
+<h5 id="założenia">Założenia:</h5>
+<p align="justify">Klientom zostanie umożliwione m. in.: rejestracja, logowanie, przeglądanie zasobów biblioteki, rezerwacja pozycji oraz prolongowanie wypożyczonych już dzieł.</p>
+<p align="justify">Pracownicy będą mogli wypożyczać zasoby klientom, dodawać nowe pozycje oraz usuwać istniejące. Tak jak i klienci będą mieli dostęp do rejestracji, logowania oraz katalogu bibliotek.</p>
+<h5 id="dodatkowe-założenia">Dodatkowe założenia:</h5>
+<p align="justify">Klient będzie mógł wyświetlić swój profil, a w nim sprawdzić historię wypożyczeń, listę swoich rezerwacji, usunąć swoje konto oraz wylogować się.</p>
+<h5 id="użyte-języki-środowiska-i-frameworki">Użyte języki, środowiska i frameworki:</h5>
+<ul>
+<li>C++, Qt Creator</li>
+<li>Python, CSS, HTML, Jinja2, FireBase, Flask</li>
+</ul>
+<h1 id="diagramy-uml">2. Diagramy UML</h1>
+<h2 id="a-diagram-przypadków-użycia">a) diagram przypadków użycia</h2>
+<p><img src="https://i.imgur.com/piaUrhz.png" alt=""></p>
+<h2 id="b-diagram-klas">b) diagram klas</h2>
+<p><img src="https://i.imgur.com/q23vbAP.png" alt=""></p>
+<h1 id="kod-klas-c">3. Kod klas C++</h1>
+<p>Z kodu klas zostały usunięte fragmenty dotyczące GUI.</p>
+<h3 id="addbookform-class">AddBookForm class</h3>
+<pre class=" language-c"><code class="prism ++ language-c">class addbookform <span class="token punctuation">:</span> public QDialog
+<span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    explicit <span class="token function">addbookform</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">~</span><span class="token function">addbookform</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+private<span class="token punctuation">:</span>
+    <span class="token comment">/**
+Adds a new book. It takes: title, author, ISBN number, publication date, publication 
+place, publisher and number of pages as arguments. 
+    */</span>
+    <span class="token keyword">void</span> <span class="token function">addNewBook</span><span class="token punctuation">(</span>QString title<span class="token punctuation">,</span> QString author<span class="token punctuation">,</span> QString ISBN<span class="token punctuation">,</span> QString publicationDate<span class="token punctuation">,</span> 
+    QString publicationPlace<span class="token punctuation">,</span> QString publisher<span class="token punctuation">,</span> QString pagesNumber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="book-class">Book class</h3>
+<pre class=" language-c"><code class="prism ++ language-c">class Book
+<span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+        <span class="token keyword">long</span> m_bookID<span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string m_title<span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string m_author<span class="token punctuation">;</span>
+        <span class="token keyword">long</span> m_ISBN<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> m_publicationDate<span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string m_publicationPlace<span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string m_publisher<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> m_pagesNumber<span class="token punctuation">;</span>
+        bool m_availability<span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string m_borrowerlogin<span class="token punctuation">;</span>
+        QDateTime m_startdate<span class="token punctuation">;</span>
+        QDateTime m_enddate<span class="token punctuation">;</span>
+        bool m_reservation<span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string m_reserveLogin<span class="token punctuation">;</span>
+<span class="token comment">/** 
+Getters
+*/</span>
+        <span class="token keyword">long</span> <span class="token function">getBookID</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> m_bookID<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string <span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> m_title<span class="token punctuation">;</span><span class="token punctuation">}</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string <span class="token function">getAuthor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> m_author<span class="token punctuation">;</span><span class="token punctuation">}</span>
+        <span class="token keyword">long</span> <span class="token function">getISBN</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> m_ISBN<span class="token punctuation">;</span><span class="token punctuation">}</span>
+        <span class="token keyword">int</span> <span class="token function">getPublicationDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> m_publicationDate<span class="token punctuation">;</span><span class="token punctuation">}</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string <span class="token function">getPublicationPlace</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> m_publicationPlace<span class="token punctuation">;</span><span class="token punctuation">}</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string <span class="token function">getPublisher</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> m_publisher<span class="token punctuation">;</span><span class="token punctuation">}</span>
+        <span class="token keyword">int</span> <span class="token function">getPagesnumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> m_pagesNumber<span class="token punctuation">;</span><span class="token punctuation">}</span>
+        bool <span class="token function">getAvailability</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> m_availability<span class="token punctuation">;</span><span class="token punctuation">}</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string <span class="token function">getBorrowerLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> m_borrowerlogin<span class="token punctuation">;</span><span class="token punctuation">}</span>
+        QDateTime <span class="token function">getStartDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> m_startdate<span class="token punctuation">;</span><span class="token punctuation">}</span>
+        QDateTime <span class="token function">getEndDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> m_enddate<span class="token punctuation">;</span><span class="token punctuation">}</span>
+        bool <span class="token function">getReservation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> m_reservation<span class="token punctuation">;</span><span class="token punctuation">}</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string <span class="token function">getReserveLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">{</span><span class="token keyword">return</span> m_reserveLogin<span class="token punctuation">;</span><span class="token punctuation">}</span>
+        <span class="token function">Book</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token keyword">default</span><span class="token punctuation">;</span>
+<span class="token comment">/**
+Creates a book given its data.
+*/</span>
+        <span class="token function">Book</span><span class="token punctuation">(</span><span class="token keyword">long</span> i_bookID<span class="token punctuation">,</span>
+             std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_title<span class="token punctuation">,</span>
+             std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_author<span class="token punctuation">,</span>
+             <span class="token keyword">long</span> i_ISBN<span class="token punctuation">,</span>
+             <span class="token keyword">int</span> i_publicationDate<span class="token punctuation">,</span>
+             std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_publicationPlace<span class="token punctuation">,</span>
+             std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_publisher<span class="token punctuation">,</span>
+             <span class="token keyword">int</span> i_pagesNumber<span class="token punctuation">,</span>
+             bool i_availability<span class="token punctuation">,</span>
+             std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_borrowerlogin<span class="token punctuation">,</span>
+             QDateTime i_startdate<span class="token punctuation">,</span>
+             QDateTime i_enddate<span class="token punctuation">,</span>
+             bool i_reservation<span class="token punctuation">,</span>
+             std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_reserveLogin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre>
+<h3 id="bookmanager-class">BookManager class</h3>
+<pre class=" language-c"><code class="prism ++ language-c">class bookmanager
+<span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+<span class="token comment">/**
+Converts the raw database text data into a vector of Books.
+*/</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>vector<span class="token operator">&lt;</span>Book<span class="token operator">&gt;</span> <span class="token function">showBooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/**
+Loads the raw database text data.
+*/</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>vector<span class="token operator">&lt;</span>QString<span class="token operator">&gt;</span> <span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/**
+Deletes a book given its row.
+*/</span>
+    <span class="token keyword">void</span> <span class="token function">deleteBook</span><span class="token punctuation">(</span><span class="token keyword">int</span> row<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token comment">/**
+Rents a book given its row and reservers login.
+*/</span>
+    <span class="token keyword">void</span> <span class="token function">rentABook</span><span class="token punctuation">(</span><span class="token keyword">int</span> row<span class="token punctuation">,</span> QString login<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token comment">/**
+Reserves a book given its row and reservers login.
+*/</span>
+    <span class="token keyword">void</span> <span class="token function">reserveABook</span><span class="token punctuation">(</span><span class="token keyword">int</span> row<span class="token punctuation">,</span> QString login<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token comment">/**
+Renews a book given its row
+*/</span>
+    <span class="token keyword">void</span> <span class="token function">renewABook</span> <span class="token punctuation">(</span><span class="token keyword">int</span> row<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="loginmanager-class">LoginManager class</h3>
+<pre class=" language-c"><code class="prism ++ language-c">class LoginManager <span class="token punctuation">:</span> public QDialog
+<span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+<span class="token comment">/**
+Helper functions
+*/</span>
+    QString <span class="token function">getLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QString <span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    bool <span class="token function">getAccess</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> access<span class="token punctuation">;</span><span class="token punctuation">}</span>
+    <span class="token keyword">int</span> <span class="token function">getPermissions</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> permissions<span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+<span class="token comment">/**
+Helper variable
+*/</span>
+    bool isAccepted<span class="token punctuation">;</span>
+
+    
+private<span class="token punctuation">:</span>
+<span class="token comment">/**
+Helper variables
+*/</span>
+    <span class="token keyword">int</span> permissions<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    bool access<span class="token operator">=</span>false<span class="token punctuation">;</span>
+    
+<span class="token comment">/**
+Verifies if password and login match. Takes login and password as arguments.
+*/</span>
+    <span class="token keyword">void</span> <span class="token function">verifyPassword</span><span class="token punctuation">(</span>QString user_login<span class="token punctuation">,</span> QString user_password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="mainwindow-class">MainWindow class</h3>
+<pre class=" language-c"><code class="prism ++ language-c">class MainWindow <span class="token punctuation">:</span> public QMainWindow
+<span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    LoginManager <span class="token operator">*</span>loginmanager<span class="token punctuation">;</span>
+    User<span class="token punctuation">:</span><span class="token punctuation">:</span>Type type<span class="token punctuation">;</span>
+    RegisterManager <span class="token operator">*</span>registermanager<span class="token punctuation">;</span>
+    addbookform <span class="token operator">*</span>addbookdialog<span class="token punctuation">;</span>
+    rentbookform <span class="token operator">*</span>rentbookdialog<span class="token punctuation">;</span>
+<span class="token comment">/**
+Changes the users permissions.
+*/</span>
+    <span class="token keyword">void</span> <span class="token function">setTypeOfUser</span><span class="token punctuation">(</span><span class="token keyword">int</span> permissions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token comment">/**
+Contains currently selected row.
+*/</span>
+    <span class="token keyword">int</span> activeRow<span class="token punctuation">;</span>
+
+<span class="token comment">/**
+The following functions have self-explanatory names
+
+To clear the confusion: they use the GUI to do their job,
+so they take no arguments.
+*/</span>
+    <span class="token keyword">void</span> <span class="token function">userRegister</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">userLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">displayBooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">addBook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">deleteBook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">rentBook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">reserveBook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">renewBook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">logOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="registermanager-class">RegisterManager class</h3>
+<pre class=" language-c"><code class="prism ++ language-c">class RegisterManager <span class="token punctuation">:</span> public QDialog
+<span class="token punctuation">{</span>
+<span class="token comment">/**
+Getters
+*/</span>
+    QString <span class="token function">getLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QString <span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token comment">/**
+Safety check, used in operations on users.
+*/</span>
+    bool <span class="token function">isUserInDatabase</span><span class="token punctuation">(</span>QString login<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+private<span class="token punctuation">:</span>
+<span class="token comment">/**
+Creates a new user. Takes login, password, name, surname and type as arguments.
+*/</span>
+    <span class="token keyword">void</span> <span class="token function">createNewUser</span><span class="token punctuation">(</span>QString login<span class="token punctuation">,</span> QString password<span class="token punctuation">,</span> QString name<span class="token punctuation">,</span> QString surname<span class="token punctuation">,</span>
+    QString type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="user-class">User class</h3>
+<pre class=" language-c"><code class="prism ++ language-c">class User
+<span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string name<span class="token punctuation">;</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string surname<span class="token punctuation">;</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string login<span class="token punctuation">;</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string password<span class="token punctuation">;</span>
+    <span class="token keyword">enum</span> class Type
+    <span class="token punctuation">{</span>
+        Guest<span class="token punctuation">,</span>
+        Client<span class="token punctuation">,</span>
+        Librarian
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    Type type<span class="token punctuation">;</span>
+    <span class="token function">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="usermanager-class">UserManager class</h3>
+<pre class=" language-c"><code class="prism ++ language-c">class userManager
+<span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+<span class="token comment">/**
+Helper variables
+*/</span>
+    bool access<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> type<span class="token punctuation">;</span>
+
+<span class="token comment">/**
+Helper functions
+*/</span>
+    bool <span class="token function">accessAccepted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span><span class="token keyword">return</span> access<span class="token punctuation">;</span><span class="token punctuation">}</span>
+    <span class="token keyword">int</span> <span class="token function">getPermissions</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">{</span><span class="token keyword">return</span> type<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token comment">/**
+Searches user in database.
+*/</span>
+    bool <span class="token function">userSearching</span><span class="token punctuation">(</span>std<span class="token punctuation">:</span><span class="token punctuation">:</span>string login<span class="token punctuation">,</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>string password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">userManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h1 id="schematy-blokowe-oraz-kod-własnych-funkcji">4. Schematy blokowe oraz kod własnych funkcji</h1>
+<p align="justify">Poniższe schematy blokowe ukazują działanie dwóch wybranych przeze mnie funkcji. Jedna z nich jest używana do wyświetlania wszystkich książek, natomiast druga służy do rejestrowania nowego użytkownika.</p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><img src="https://i.imgur.com/iNPPzvA.png" alt=""></th>
+<th align="center"><img src="https://i.imgur.com/cnyoSMv.png" alt=""></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Schemat blokowy funkcji showBooks</td>
+<td align="center">Schemat blokowy funkcji rejestrującej użytkownika</td>
+</tr>
+</tbody>
+</table><h1 id="opis-użytkowy-programu-c">5. Opis użytkowy programu C++</h1>
+<p align="justify">Poruszanie się po programie jest bardzo intuicyjne. Po uruchomieniu aplikacji użytkownikowi ukazuje się menu biblioteki, w którym może się zarejestrować, zalogować lub wybrać opcje "Show Catalogue", która wyświetli tytuły wszystkich dostępnych książek. </p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><img src="https://i.imgur.com/BmS47tO.png" alt=""></th>
+<th align="center"><img src="https://i.imgur.com/qQBTneO.png" alt=""></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Menu główne</td>
+<td align="center">Menu po wybraniu opcji wyświetlenia katalogu</td>
+</tr>
+</tbody>
+</table><p align="justify">Po wybraniu opcji rejestracji wyświetla się formularz do wypełnienia. Jeżeli rejestracji próbuje dokonać użytkownik, który istnieje już w bazie, program informuje o tym. Pozostawienie któregoś z pól pustym również wyświetla ostrzeżenie. Dodatkowym udogodnieniem, które ułatwia rejestracje jest opcja, która sprawdza czy oba podane hasła są identyczne. </p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><img src="https://i.imgur.com/KnS2zRj.png" alt=""></th>
+<th align="center"><img src="https://i.imgur.com/2mtZ8EB.png" alt=""></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Menu rejestracji</td>
+<td align="center">Panel rejestracyjny z przykładowymi danymi</td>
+</tr>
+</tbody>
+</table><p align="justify">Po wybraniu opcji logowania wyświetla się formularz do wpisania loginu i hasła. W przypadku wpisania złego hasła, otrzymujemy komunikat o tym informujący lub w przypadku, gdy program podejrzewa że podanego użytkownika nie ma w bazie, również otrzymujemy stosowny komunikat.</p>
+
+<table>
+<thead>
+<tr>
+<th align="center"><img src="https://i.imgur.com/5y6i7AF.png" alt=""></th>
+<th align="center"><img src="https://i.imgur.com/LX2JGKP.png" alt=""> <img src="https://i.imgur.com/VMT9OND.png" alt=""></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Menu logowania</td>
+<td align="center">Przykładowe komunikaty</td>
+</tr>
+</tbody>
+</table><p align="justify">Po zalogowaniu się jako klient uzyskujemy dostęp do podstawowych funkcji programu. Otrzymujemy katalog książek wraz z większością ich danych: autorem, numerem ISBN, liczba stron, informacje dotyczące publikacji (miejsce, czas i wydawnictwo) oraz dostępności książki (czy jest wypożyczona, czy jest zarezerwowana). Możemy zarezerwować książkę, którą chcemy wypożyczyć lub prolongować wypożyczoną już przez nas pozycje. Po wykonaniu czynności które nas interesują możemy się wylogować. </p>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://i.imgur.com/bpitYQ6.png" alt=""></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wygląd programu dla klienta</td>
+</tr>
+</tbody>
+</table><p align="justify">Po zalogowaniu się jako bibliotekarz uzyskujemy dostęp do większości funkcji programu. Otrzymujemy katalog książek wraz z ich wszystkimi danymi: autorem, numerem ISBN, liczba stron, informacje dotyczące publikacji (miejsce, czas i wydawnictwo) oraz dostępności książki (czy jest wypożyczona, kto ja wypożyczył, od kiedy i do kiedy, czy jest zarezerwowana, jeśli tak to przez kogo). Mamy możliwość dodania nowej książki, usunięcia istniejącej lub wypożyczenia.</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://i.imgur.com/VWsY5qt.png" alt=""></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wygląd programu dla bibliotekarza</td>
+</tr>
+</tbody>
+</table><p align="justify">Do uruchomienia programu w systemie Windows potrzebne są pliki konfiguracyjne *.dll, które znajdują się w folderze wraz z plikiem wykonywalnym.  </p>
+<h1 id="listing-kodu-c---wraz-z-komentarzami">6. Listing kodu C++ - wraz z komentarzami</h1>
+<p align="justify">W niektórych funkcjach nadal znajdują się elementy GUI, którtch nie dało się wyciąć ze względu na połączenie warstwy logicznej z warstwą graficzną programu.</p>
+<h3 id="addbookform-class-1">AddBookForm class</h3>
+<pre class=" language-c"><code class="prism ++ language-c">    <span class="token comment">/**
+Collects data from GUI. Then uses function addNewBook.
+    */</span>
+<span class="token keyword">void</span> addbookform<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">on_pushButton_clicked</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    QString book_title<span class="token punctuation">;</span>
+    QString book_author<span class="token punctuation">;</span>
+    QString book_ISBN<span class="token punctuation">;</span>
+    QString book_publicationDate<span class="token punctuation">;</span>
+    QString book_publicationPlace<span class="token punctuation">;</span>
+    QString book_publisher<span class="token punctuation">;</span>
+    QString book_pagesNumber<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ui<span class="token operator">-&gt;</span>lineEdit<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        book_title <span class="token operator">=</span> ui<span class="token operator">-&gt;</span>lineEdit<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">warning</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Warning"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Title of book cannot be empty!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ui<span class="token operator">-&gt;</span>lineEdit_2<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        book_author <span class="token operator">=</span> ui<span class="token operator">-&gt;</span>lineEdit_2<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">warning</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Warning"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Author cannot be empty!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ui<span class="token operator">-&gt;</span>lineEdit_3<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        book_ISBN <span class="token operator">=</span> ui<span class="token operator">-&gt;</span>lineEdit_3<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">warning</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Warning"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"ISBN cannot be empty!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ui<span class="token operator">-&gt;</span>lineEdit_4<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        book_publicationDate <span class="token operator">=</span> ui<span class="token operator">-&gt;</span>lineEdit_4<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+     QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">warning</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span><span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Warning"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Publication date cannot be empty!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ui<span class="token operator">-&gt;</span>lineEdit_5<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        book_publicationPlace <span class="token operator">=</span> ui<span class="token operator">-&gt;</span>lineEdit_5<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+     QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">warning</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span><span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Warning"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Publication place cannot be empty!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ui<span class="token operator">-&gt;</span>lineEdit_6<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        book_publisher <span class="token operator">=</span> ui<span class="token operator">-&gt;</span>lineEdit_6<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+     QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">warning</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Warning"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Publisher cannot be empty!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ui<span class="token operator">-&gt;</span>lineEdit_7<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        book_pagesNumber <span class="token operator">=</span> ui<span class="token operator">-&gt;</span>lineEdit_7<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+   QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">warning</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span><span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Warning"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Number of pages cannot be empty!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">addNewBook</span><span class="token punctuation">(</span>book_title<span class="token punctuation">,</span>book_author<span class="token punctuation">,</span>book_ISBN<span class="token punctuation">,</span>book_publicationDate<span class="token punctuation">,</span>
+    book_publicationPlace<span class="token punctuation">,</span>book_publisher<span class="token punctuation">,</span>book_pagesNumber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+ QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">information</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Information"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Book added!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+    <span class="token comment">/**
+Adds a new book. It takes: title, author, ISBN number, publication date, 
+publication place, publisher and number of pages as arguments. 
+    */</span>
+<span class="token keyword">void</span> addbookform<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">addNewBook</span><span class="token punctuation">(</span>QString title<span class="token punctuation">,</span> QString author<span class="token punctuation">,</span> QString ISBN<span class="token punctuation">,</span> 
+QString publicationDate<span class="token punctuation">,</span> QString publicationPlace<span class="token punctuation">,</span> QString publisher<span class="token punctuation">,</span> QString pagesNumber<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    QString path <span class="token operator">=</span> QCoreApplication<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">applicationDirPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            path<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"\\bookdatabase.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QFile <span class="token function">file</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>file<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>ReadOnly<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">information</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token string">"Error"</span><span class="token punctuation">,</span> file<span class="token punctuation">.</span><span class="token function">errorString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QTextStream <span class="token function">in</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QString text<span class="token punctuation">;</span>
+    text <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">readAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    file<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QRegExp <span class="token function">rx</span><span class="token punctuation">(</span><span class="token string">"(\\;)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QStringList query <span class="token operator">=</span> text<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span>rx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    query<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    query<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> numberofbooks <span class="token operator">=</span> query<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">14</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    QString lastID <span class="token operator">=</span> query<span class="token punctuation">[</span><span class="token punctuation">(</span>numberofbooks<span class="token number">-2</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">14</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> newID <span class="token operator">=</span> lastID<span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+    QString bookID <span class="token operator">=</span> QString<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">number</span><span class="token punctuation">(</span>newID<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QString availability <span class="token operator">=</span> <span class="token string">"1"</span><span class="token punctuation">;</span>
+    QString borrowerID <span class="token operator">=</span> <span class="token string">"0"</span><span class="token punctuation">;</span>
+    QString startDate <span class="token operator">=</span> <span class="token string">"0"</span><span class="token punctuation">;</span>
+    QString endDate <span class="token operator">=</span> <span class="token string">"0"</span><span class="token punctuation">;</span>
+    QString reservation <span class="token operator">=</span> <span class="token string">"0"</span><span class="token punctuation">;</span>
+    QString reserveLogin  <span class="token operator">=</span> <span class="token string">"0"</span><span class="token punctuation">;</span>
+
+    QString insertQuery <span class="token operator">=</span> text <span class="token operator">+</span>
+            bookID <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span>
+            title <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span>
+            author <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span>
+            ISBN <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span>
+            publicationDate <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span>
+            publicationPlace <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span>
+            publisher <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span>
+            pagesNumber <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span>
+            availability <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span>
+            borrowerID <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span>
+            startDate <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span>
+            endDate <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span>
+            reservation <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span>
+            reserveLogin <span class="token operator">+</span> <span class="token string">";"</span><span class="token punctuation">;</span>
+
+    QString path2 <span class="token operator">=</span> QCoreApplication<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">applicationDirPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            path2<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"\\bookdatabase.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QFile <span class="token function">file2</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>file2<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>WriteOnly <span class="token operator">|</span> QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>Text<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+    QTextStream <span class="token function">out</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>file2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    out <span class="token operator">&lt;&lt;</span> insertQuery<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="book-class-1">Book class</h3>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token comment">/**
+Constructor. Creates Book objects.
+*/</span>
+Book<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">Book</span><span class="token punctuation">(</span><span class="token keyword">long</span> i_bookID<span class="token punctuation">,</span>
+         std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_title<span class="token punctuation">,</span>
+         std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_author<span class="token punctuation">,</span>
+         <span class="token keyword">long</span> i_ISBN<span class="token punctuation">,</span>
+         <span class="token keyword">int</span> i_publicationDate<span class="token punctuation">,</span>
+         std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_publicationPlace<span class="token punctuation">,</span>
+         std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_publisher<span class="token punctuation">,</span>
+         <span class="token keyword">int</span> i_pagesNumber<span class="token punctuation">,</span>
+         bool i_availability<span class="token punctuation">,</span>
+         std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_borrowerLogin<span class="token punctuation">,</span>
+         QDateTime i_startdate<span class="token punctuation">,</span>
+         QDateTime i_enddate<span class="token punctuation">,</span>
+         bool i_reservation<span class="token punctuation">,</span>
+         std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_reserveLogin<span class="token punctuation">)</span>
+    <span class="token punctuation">:</span> <span class="token function">m_bookID</span><span class="token punctuation">(</span>i_bookID<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">m_title</span> <span class="token punctuation">(</span>i_title<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">m_author</span> <span class="token punctuation">(</span>i_author<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">m_ISBN</span> <span class="token punctuation">(</span>i_ISBN<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">m_publicationDate</span> <span class="token punctuation">(</span>i_publicationDate<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">m_publicationPlace</span> <span class="token punctuation">(</span>i_publicationPlace<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">m_publisher</span> <span class="token punctuation">(</span>i_publisher<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">m_pagesNumber</span> <span class="token punctuation">(</span>i_pagesNumber<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">m_availability</span> <span class="token punctuation">(</span>i_availability<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">m_borrowerlogin</span> <span class="token punctuation">(</span>i_borrowerLogin<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">m_startdate</span> <span class="token punctuation">(</span>i_startdate<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">m_enddate</span> <span class="token punctuation">(</span>i_enddate<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">m_reservation</span> <span class="token punctuation">(</span>i_reservation<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">m_reserveLogin</span> <span class="token punctuation">(</span>i_reserveLogin<span class="token punctuation">)</span>
+<span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre>
+<h3 id="bookmanager-class-1">BookManager class</h3>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token comment">/**
+Converts the raw database text data into a vector of Books.
+*/</span>
+std<span class="token punctuation">:</span><span class="token punctuation">:</span>vector<span class="token operator">&lt;</span>Book<span class="token operator">&gt;</span> bookmanager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">showBooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    QList<span class="token operator">&lt;</span>QString<span class="token operator">&gt;</span> query <span class="token operator">=</span>
+    QList<span class="token operator">&lt;</span>QString<span class="token operator">&gt;</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">fromVector</span><span class="token punctuation">(</span>QVector<span class="token operator">&lt;</span>QString<span class="token operator">&gt;</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">fromStdVector</span><span class="token punctuation">(</span><span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>vector<span class="token operator">&lt;</span>Book<span class="token operator">&gt;</span> temp_books<span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token punctuation">(</span>query<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">long</span> i_bookID <span class="token operator">=</span> query<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toLong</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_title <span class="token operator">=</span> query<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toStdString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_author <span class="token operator">=</span> query<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toStdString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">long</span> i_ISBN <span class="token operator">=</span> query<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toLong</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> i_publicationDate <span class="token operator">=</span> query<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_publicationPlace <span class="token operator">=</span> query<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toStdString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_publisher <span class="token operator">=</span> query<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toStdString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> i_pagesNumber <span class="token operator">=</span> query<span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        bool i_availability <span class="token operator">=</span> query<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_borrowerLogin <span class="token operator">=</span> query<span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toStdString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        QDateTime i_startdate <span class="token operator">=</span> QDateTime<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">fromString</span><span class="token punctuation">(</span>query<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"MM dd yyyy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        QDateTime i_enddate <span class="token operator">=</span> QDateTime<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">fromString</span><span class="token punctuation">(</span>query<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"MM dd yyyy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        bool i_reservation <span class="token operator">=</span> query<span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>string i_reserveLogin <span class="token operator">=</span> query<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toStdString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Book <span class="token function">temp_book</span><span class="token punctuation">(</span>i_bookID<span class="token punctuation">,</span>
+                       i_title<span class="token punctuation">,</span>
+                       i_author<span class="token punctuation">,</span>
+                       i_ISBN<span class="token punctuation">,</span>
+                       i_publicationDate<span class="token punctuation">,</span>
+                       i_publicationPlace<span class="token punctuation">,</span>
+                       i_publisher<span class="token punctuation">,</span>
+                       i_pagesNumber<span class="token punctuation">,</span>
+                       i_availability<span class="token punctuation">,</span>
+                       i_borrowerLogin<span class="token punctuation">,</span>
+                       i_startdate<span class="token punctuation">,</span>
+                       i_enddate<span class="token punctuation">,</span>
+                       i_reservation<span class="token punctuation">,</span>
+                       i_reserveLogin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        temp_books<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>temp_book<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">14</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+            query<span class="token punctuation">.</span><span class="token function">pop_front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> temp_books<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+Loads the raw database text data from *.txt file into a vector.
+*/</span>
+std<span class="token punctuation">:</span><span class="token punctuation">:</span>vector<span class="token operator">&lt;</span>QString<span class="token operator">&gt;</span> bookmanager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    QString path <span class="token operator">=</span> QCoreApplication<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">applicationDirPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            path<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"\\bookdatabase.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QFile <span class="token function">file</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>file<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>ReadOnly<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">information</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token string">"Error"</span><span class="token punctuation">,</span> file<span class="token punctuation">.</span><span class="token function">errorString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QTextStream <span class="token function">in</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QString text<span class="token punctuation">;</span>
+    text <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">readAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    file<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QRegExp <span class="token function">rx</span><span class="token punctuation">(</span><span class="token string">"(\\;)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//RegEx for ';'</span>
+    QStringList query <span class="token operator">=</span> text<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span>rx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>vector<span class="token operator">&lt;</span>QString<span class="token operator">&gt;</span> vec <span class="token operator">=</span> query<span class="token punctuation">.</span><span class="token function">toVector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toStdVector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> vec<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+Deletes a book given its row. It updates the database (*.txt file).
+*/</span>
+<span class="token keyword">void</span> bookmanager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">deleteBook</span><span class="token punctuation">(</span><span class="token keyword">int</span> row<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>vector<span class="token operator">&lt;</span>QString<span class="token operator">&gt;</span> content <span class="token operator">=</span> <span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> start <span class="token operator">=</span> <span class="token number">14</span><span class="token operator">*</span>row<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> end<span class="token operator">=</span> start<span class="token operator">+</span><span class="token number">14</span><span class="token punctuation">;</span>
+    content<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>content<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>start<span class="token punctuation">,</span> content<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    QString query<span class="token punctuation">;</span>
+     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> x <span class="token punctuation">:</span> content<span class="token punctuation">)</span>
+     <span class="token punctuation">{</span>
+         query<span class="token operator">+</span><span class="token operator">=</span>x<span class="token operator">+</span><span class="token string">";"</span><span class="token punctuation">;</span>
+
+     <span class="token punctuation">}</span>
+     query<span class="token punctuation">.</span><span class="token function">truncate</span><span class="token punctuation">(</span>query<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     QString path <span class="token operator">=</span> QCoreApplication<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">applicationDirPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+             path<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"\\bookdatabase.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     QFile <span class="token function">file</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>file<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>WriteOnly <span class="token operator">|</span> QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>Text<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+    QTextStream <span class="token function">out</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    out <span class="token operator">&lt;&lt;</span> query<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+Rents a book given its row and reservers login. Adds current date as a beginnig 
+of duration of renting book process. Adds deadline for book returning 
+by adding 30 days to current date. Updates database.
+*/</span>
+<span class="token keyword">void</span> bookmanager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">rentABook</span><span class="token punctuation">(</span><span class="token keyword">int</span> row<span class="token punctuation">,</span> QString login<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>vector<span class="token operator">&lt;</span>QString<span class="token operator">&gt;</span> content <span class="token operator">=</span> <span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> start <span class="token operator">=</span> <span class="token number">14</span><span class="token operator">*</span>row<span class="token punctuation">;</span>
+    content<span class="token punctuation">[</span>start<span class="token operator">+</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"0"</span><span class="token punctuation">;</span>
+    content<span class="token punctuation">[</span>start<span class="token operator">+</span><span class="token number">9</span><span class="token punctuation">]</span><span class="token operator">=</span>login<span class="token punctuation">;</span>
+
+    QDateTime today <span class="token operator">=</span> QDateTime<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">currentDateTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QDateTime later <span class="token operator">=</span> today<span class="token punctuation">.</span><span class="token function">addDays</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   content<span class="token punctuation">[</span>start<span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token operator">=</span> today<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token string">"MM dd yyyy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   content<span class="token punctuation">[</span>start<span class="token operator">+</span><span class="token number">11</span><span class="token punctuation">]</span><span class="token operator">=</span>later<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token string">"MM dd yyyy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    QString query<span class="token punctuation">;</span>
+     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> x <span class="token punctuation">:</span> content<span class="token punctuation">)</span>
+     <span class="token punctuation">{</span>
+         query <span class="token operator">+</span><span class="token operator">=</span> x <span class="token operator">+</span> <span class="token string">";"</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+
+     QString path <span class="token operator">=</span> QCoreApplication<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">applicationDirPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+             path<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"\\bookdatabase.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     QFile <span class="token function">file</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>file<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>WriteOnly <span class="token operator">|</span> QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>Text<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+    QTextStream <span class="token function">out</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    out <span class="token operator">&lt;&lt;</span> query<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+Reserves a book given its row and reservers login. Updates database.
+*/</span>
+<span class="token keyword">void</span> bookmanager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">reserveABook</span><span class="token punctuation">(</span><span class="token keyword">int</span> row<span class="token punctuation">,</span> QString login<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>vector<span class="token operator">&lt;</span>QString<span class="token operator">&gt;</span> content <span class="token operator">=</span> <span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> start <span class="token operator">=</span> <span class="token number">14</span><span class="token operator">*</span>row<span class="token punctuation">;</span>
+    content<span class="token punctuation">[</span>start<span class="token operator">+</span><span class="token number">12</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"1"</span><span class="token punctuation">;</span>
+    content<span class="token punctuation">[</span>start<span class="token operator">+</span><span class="token number">13</span><span class="token punctuation">]</span><span class="token operator">=</span>login<span class="token punctuation">;</span>
+
+    QString query<span class="token punctuation">;</span>
+     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> x <span class="token punctuation">:</span> content<span class="token punctuation">)</span>
+     <span class="token punctuation">{</span>
+         query<span class="token operator">+</span><span class="token operator">=</span>x<span class="token operator">+</span><span class="token string">";"</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+
+     QString path <span class="token operator">=</span> QCoreApplication<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">applicationDirPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+             path<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"\\bookdatabase.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     QFile <span class="token function">file</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>file<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>WriteOnly <span class="token operator">|</span> QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>Text<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+    QTextStream <span class="token function">out</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    out <span class="token operator">&lt;&lt;</span> query<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+Renews a book given its row. Postpones the deadline of book returning by adding 30 days
+to current date and setting is as a new dealine. Updates database.
+*/</span>
+<span class="token keyword">void</span> bookmanager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">renewABook</span><span class="token punctuation">(</span><span class="token keyword">int</span> row<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>vector<span class="token operator">&lt;</span>QString<span class="token operator">&gt;</span> content <span class="token operator">=</span> <span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> start <span class="token operator">=</span> <span class="token number">14</span><span class="token operator">*</span>row<span class="token punctuation">;</span>
+
+    QDateTime current <span class="token operator">=</span> QDateTime<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">currentDateTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QDateTime renew <span class="token operator">=</span> current<span class="token punctuation">.</span><span class="token function">addDays</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    content<span class="token punctuation">[</span>start<span class="token operator">+</span><span class="token number">11</span><span class="token punctuation">]</span><span class="token operator">=</span>renew<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token string">"MM dd yyyy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    QString query<span class="token punctuation">;</span>
+     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> x <span class="token punctuation">:</span> content<span class="token punctuation">)</span>
+     <span class="token punctuation">{</span>
+         query<span class="token operator">+</span><span class="token operator">=</span>x<span class="token operator">+</span><span class="token string">";"</span><span class="token punctuation">;</span>
+
+     <span class="token punctuation">}</span>
+
+     QString path <span class="token operator">=</span> QCoreApplication<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">applicationDirPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+             path<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"\\bookdatabase.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     QFile <span class="token function">file</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>file<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>WriteOnly <span class="token operator">|</span> QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>Text<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+    QTextStream <span class="token function">out</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    out <span class="token operator">&lt;&lt;</span> query<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="loginmanager-class-1">LoginManager class</h3>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token comment">/**
+Helper functions. Gets login and password from GUI.
+*/</span>
+QString LoginManager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">getLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> ui<span class="token operator">-&gt;</span>lineEdit_2<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+QString LoginManager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> ui<span class="token operator">-&gt;</span>lineEdit<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+Logging function. Collects data (login and password) from GUI. Then uses function 
+verifyPassword.
+*/</span>
+<span class="token keyword">void</span> LoginManager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">on_buttonBox_accepted</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    QString user_login<span class="token punctuation">;</span>
+    QString user_password<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ui<span class="token operator">-&gt;</span>lineEdit_2<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        user_login <span class="token operator">=</span> ui<span class="token operator">-&gt;</span>lineEdit_2<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">warning</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Warning"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Login cannot be empty!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ui<span class="token operator">-&gt;</span>lineEdit<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        user_password <span class="token operator">=</span> ui<span class="token operator">-&gt;</span>lineEdit<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trimmed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">warning</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Warning"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Password cannot be empty!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">verifyPassword</span><span class="token punctuation">(</span>user_login<span class="token punctuation">,</span> user_password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+Verifies if password and login match. Takes login and password as arguments.
+*/</span>
+<span class="token keyword">void</span> LoginManager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">verifyPassword</span><span class="token punctuation">(</span>QString user_login<span class="token punctuation">,</span> QString user_password<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    userManager manager<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>manager<span class="token punctuation">.</span><span class="token function">userSearching</span><span class="token punctuation">(</span>user_login<span class="token punctuation">.</span><span class="token function">toStdString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">,</span> user_password<span class="token punctuation">.</span><span class="token function">toStdString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>manager<span class="token punctuation">.</span>access<span class="token operator">==</span>true<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            this<span class="token operator">-&gt;</span>access<span class="token operator">=</span> true<span class="token punctuation">;</span>
+            this<span class="token operator">-&gt;</span>permissions<span class="token operator">=</span>manager<span class="token punctuation">.</span><span class="token function">getPermissions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">warning</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Warning"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Wrong password!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">warning</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Warning"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">tr</span><span class="token punctuation">(</span><span class="token string">"Wrong login or password!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="mainwindow-class-1">MainWindow class</h3>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token comment">/**
+Changes the users permissions.
+*/</span>
+<span class="token keyword">void</span> MainWindow<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">setTypeOfUser</span><span class="token punctuation">(</span><span class="token keyword">int</span> permissions<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>permissions<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        this<span class="token operator">-&gt;</span>type<span class="token operator">=</span> User<span class="token punctuation">:</span><span class="token punctuation">:</span>Type<span class="token punctuation">:</span><span class="token punctuation">:</span>Guest<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>permissions<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        this<span class="token operator">-&gt;</span>type<span class="token operator">=</span> User<span class="token punctuation">:</span><span class="token punctuation">:</span>Type<span class="token punctuation">:</span><span class="token punctuation">:</span>Client<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>permissions<span class="token operator">==</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        this<span class="token operator">-&gt;</span>type<span class="token operator">=</span> User<span class="token punctuation">:</span><span class="token punctuation">:</span>Type<span class="token punctuation">:</span><span class="token punctuation">:</span>Librarian<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+The following functions have self-explanatory names
+
+To clear the confusion: they use the GUI to do their job,
+so they take no arguments.
+*/</span>
+<span class="token keyword">void</span> MainWindow<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">userRegister</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    registermanager <span class="token operator">=</span> new <span class="token function">RegisterManager</span><span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>registermanager<span class="token operator">-&gt;</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> MainWindow<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">userLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    loginmanager <span class="token operator">=</span> new <span class="token function">LoginManager</span><span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>loginmanager<span class="token operator">-&gt;</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>loginmanager<span class="token operator">-&gt;</span><span class="token function">getAccess</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token function">setTypeOfUser</span><span class="token punctuation">(</span>loginmanager<span class="token operator">-&gt;</span><span class="token function">getPermissions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> MainWindow<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">displayBooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+
+    bookmanager manager<span class="token punctuation">;</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string stext<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> book <span class="token punctuation">:</span> manager<span class="token punctuation">.</span><span class="token function">showBooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        stext<span class="token operator">+</span><span class="token operator">=</span>book<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'\n'</span><span class="token punctuation">;</span>
+    QString text <span class="token operator">=</span> QString<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">fromStdString</span><span class="token punctuation">(</span>stext<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ui<span class="token operator">-&gt;</span>textBrowser<span class="token operator">-&gt;</span><span class="token function">setText</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> MainWindow<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">addBook</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    addbookdialog<span class="token operator">=</span> new <span class="token function">addbookform</span><span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>addbookdialog<span class="token operator">-&gt;</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token function">setTypeOfUser</span><span class="token punctuation">(</span>loginmanager<span class="token operator">-&gt;</span><span class="token function">getPermissions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> MainWindow<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">deleteBook</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    bookmanager manager<span class="token punctuation">;</span>
+    manager<span class="token punctuation">.</span><span class="token function">deleteBook</span><span class="token punctuation">(</span>activeRow<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">setTypeOfUser</span><span class="token punctuation">(</span>loginmanager<span class="token operator">-&gt;</span><span class="token function">getPermissions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> MainWindow<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">rentBook</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    rentbookdialog <span class="token operator">=</span> new <span class="token function">rentbookform</span><span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>rentbookdialog<span class="token operator">-&gt;</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        QString login <span class="token operator">=</span> rentbookdialog<span class="token operator">-&gt;</span><span class="token function">getLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>login<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            bookmanager manager<span class="token punctuation">;</span>
+            manager<span class="token punctuation">.</span><span class="token function">rentABook</span><span class="token punctuation">(</span>activeRow<span class="token punctuation">,</span> login<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">setTypeOfUser</span><span class="token punctuation">(</span>loginmanager<span class="token operator">-&gt;</span><span class="token function">getPermissions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> MainWindow<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">reserveBook</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    bookmanager manager<span class="token punctuation">;</span>
+    QString login <span class="token operator">=</span> loginmanager<span class="token operator">-&gt;</span><span class="token function">getLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    manager<span class="token punctuation">.</span><span class="token function">reserveABook</span><span class="token punctuation">(</span>activeRow<span class="token punctuation">,</span> login<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">setTypeOfUser</span><span class="token punctuation">(</span>loginmanager<span class="token operator">-&gt;</span><span class="token function">getPermissions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> MainWindow<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">renewBook</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    bookmanager manager<span class="token punctuation">;</span>
+    manager<span class="token punctuation">.</span><span class="token function">renewABook</span><span class="token punctuation">(</span>activeRow<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">setTypeOfUser</span><span class="token punctuation">(</span>loginmanager<span class="token operator">-&gt;</span><span class="token function">getPermissions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> MainWindow<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">logOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+            <span class="token function">setTypeOfUser</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="registermanager-class-1">RegisterManager class</h3>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token comment">/**
+Helper functions. Gets login and password from GUI.
+*/</span>
+QString RegisterManager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">getLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> ui<span class="token operator">-&gt;</span>lineEdit<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+QString RegisterManager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> ui<span class="token operator">-&gt;</span>lineEdit_2<span class="token operator">-&gt;</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+Safety check, used in operations on users. Checks if user exists in database.
+*/</span>
+bool RegisterManager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">isUserInDatabase</span><span class="token punctuation">(</span>QString login<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    QString path <span class="token operator">=</span> QCoreApplication<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">applicationDirPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            path<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"\\userdatabase.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QFile <span class="token function">file</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>file<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>ReadOnly<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">information</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token string">"Error"</span><span class="token punctuation">,</span> file<span class="token punctuation">.</span><span class="token function">errorString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QTextStream <span class="token function">in</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QString text<span class="token punctuation">;</span>
+    text <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">readAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    file<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QRegExp <span class="token function">rx</span><span class="token punctuation">(</span><span class="token string">"(\\;)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QStringList query <span class="token operator">=</span> text<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span>rx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QStringList logins<span class="token punctuation">;</span>
+    query<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>query<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        logins<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>query<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+            query<span class="token punctuation">.</span><span class="token function">pop_front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">int</span> index <span class="token operator">=</span> logins<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>login<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>index<span class="token operator">!=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+Creates a new user. Takes login, password, name, surname and type (taken from GUI) 
+as arguments. Updates users database.
+*/</span>
+<span class="token keyword">void</span> RegisterManager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">createNewUser</span><span class="token punctuation">(</span>QString login<span class="token punctuation">,</span> QString password<span class="token punctuation">,</span> QString name<span class="token punctuation">,</span> 
+QString surname<span class="token punctuation">,</span> QString type<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    QString path2 <span class="token operator">=</span> QCoreApplication<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">applicationDirPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            path2<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"\\userdatabase.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QFile <span class="token function">file2</span><span class="token punctuation">(</span>path2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>file2<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>ReadOnly<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">information</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token string">"Error"</span><span class="token punctuation">,</span> file2<span class="token punctuation">.</span><span class="token function">errorString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QTextStream <span class="token function">in</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>file2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QString text<span class="token punctuation">;</span>
+    text <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">readAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    file2<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    QString newQuery <span class="token operator">=</span> text <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span> surname <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span> login <span class="token operator">+</span> 
+    <span class="token string">";"</span> <span class="token operator">+</span> password <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">+</span> type <span class="token operator">+</span> <span class="token string">";"</span><span class="token punctuation">;</span>
+
+    QString path <span class="token operator">=</span> QCoreApplication<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">applicationDirPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            path<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"\\userdatabase.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QFile <span class="token function">file</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>file<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>WriteOnly <span class="token operator">|</span> QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>Text<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+    QTextStream <span class="token function">out</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    out <span class="token operator">&lt;&lt;</span> newQuery<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="usermanager-class-1">UserManager class</h3>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token comment">/**
+Searches user in database. Chcecks correctness of given password and returns access.
+*/</span>
+bool userManager<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">userSearching</span><span class="token punctuation">(</span>std<span class="token punctuation">:</span><span class="token punctuation">:</span>string login<span class="token punctuation">,</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>string password<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    QString path <span class="token operator">=</span> QCoreApplication<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">applicationDirPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            path<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"\\userdatabase.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QFile <span class="token function">file</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>file<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>QIODevice<span class="token punctuation">:</span><span class="token punctuation">:</span>ReadOnly<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        QMessageBox<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">information</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token string">"Error"</span><span class="token punctuation">,</span> file<span class="token punctuation">.</span><span class="token function">errorString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QTextStream <span class="token function">in</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QString text<span class="token punctuation">;</span>
+    text <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">readAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    file<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QRegExp <span class="token function">rx</span><span class="token punctuation">(</span><span class="token string">"(\\;)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QStringList query <span class="token operator">=</span> text<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span>rx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> index <span class="token operator">=</span> query<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>QString<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">fromStdString</span><span class="token punctuation">(</span>login<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>index<span class="token operator">!=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        QString realPassword <span class="token operator">=</span> query<span class="token punctuation">[</span>index<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        QString md5password <span class="token operator">=</span>  <span class="token function">QString</span><span class="token punctuation">(</span>
+        QCryptographicHash<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">hash</span><span class="token punctuation">(</span>
+        QString<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">fromStdString</span><span class="token punctuation">(</span>password<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toUtf8</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        QCryptographicHash<span class="token punctuation">:</span><span class="token punctuation">:</span>Md5
+        <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toHex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>realPassword<span class="token operator">==</span>md5password<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            access<span class="token operator">=</span>true<span class="token punctuation">;</span>
+            type <span class="token operator">=</span> query<span class="token punctuation">[</span>index<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> access <span class="token operator">=</span> false<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h1 id="wnioski">7. Wnioski</h1>
+<ul>
+<li>
+<p align="justify">W trakcie realizacji projektu w C++ udało mi się zrealizować wszystkie jego początkowe założenia. Ponadto w Pythonie zrealizowałam 2 dodatkowe założenia: klienci mogą sprawdzić listę swoich rezerwacji oraz historię wypożyczeń.</p>
+</li>
+<li>
+<p align="justify">Realizacja projektu uświadomiła mi, jak ważne jest oddzielenie warstwy logicznej programu od warstwy graficznej.</p>
+</li>
+<li>
+<p align="justify">W przypadku Pythona oddzielenie warstwy logicznej od graficznej jest wymuszone, gdzie w C++ nie (da się bez tego obejść, chociaż odbywa się to kosztem przejrzystości kodu).</p>
+</li>
+<li>
+<p align="justify">W Pythonie o wiele prostsze jest instalowanie zewnętrznych bibliotek.</p>
+</li>
+<li>
+<p align="justify">Wirtualne środowisko pythona (virtualenv) jest zupełnie inne niż C++'owskie dynamiczne/statyczne linkowanie bibliotek.</p>
+</li>
+</ul>
+</div>
+</body>
+
+</html>

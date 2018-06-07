@@ -24,6 +24,17 @@ Ocena:<br>
 Punkty:<br>
 Data: <br>
 </h3>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 
 # 1. Założenia i opis funkcjonalny programu
 ##### Poruszany problem:
@@ -40,11 +51,33 @@ Program dedykowany jest dla klientów biblioteki oraz jej pracowników.
 ##### Użyte języki, środowiska i frameworki:
 - C++, Qt Creator
 - Python, CSS, HTML, Jinja2, FireBase, Flask
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 # 2. Diagramy UML
 ## a) diagram przypadków użycia
 ![](https://i.imgur.com/piaUrhz.png)
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## b) diagram klas
 ![](https://i.imgur.com/q23vbAP.png)
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 # 3. Kod klas C++
 Z kodu klas zostały usunięte fragmenty dotyczące GUI.
 ### AddBookForm class
@@ -56,11 +89,12 @@ public:
     ~addbookform();
 private:
     /**
-Adds a new book. It takes: title, author, ISBN number, publication date, publication 
-place, publisher and number of pages as arguments. 
+Adds a new book. It takes: title, author, ISBN number, publication date, 
+publication place, publisher and number of pages as arguments. 
     */
-    void addNewBook(QString title, QString author, QString ISBN, QString publicationDate, 
-    QString publicationPlace, QString publisher, QString pagesNumber);
+    void addNewBook(QString title, QString author, QString ISBN, QString 
+    publicationDate, QString publicationPlace, QString publisher, QString 
+    pagesNumber);
 };
 ```
 ### Book class
@@ -241,10 +275,11 @@ Safety check, used in operations on users.
 
 private:
 /**
-Creates a new user. Takes login, password, name, surname and type as arguments.
+Creates a new user. Takes login, password, name, surname and type 
+as arguments.
 */
-    void createNewUser(QString login, QString password, QString name, QString surname,
-    QString type);
+    void createNewUser(QString login, QString password, QString name, 
+    QString surname, QString type);
 };
 ```
 ### User class
@@ -290,6 +325,18 @@ Searches user in database.
     userManager();
 };
 ```
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 # 4. Schematy blokowe oraz kod własnych funkcji 
 <p align="justify">Poniższe schematy blokowe ukazują działanie dwóch wybranych przeze mnie funkcji. Jedna z nich jest używana do wyświetlania wszystkich książek, natomiast druga służy do rejestrowania nowego użytkownika.</p>
 
@@ -297,6 +344,15 @@ Searches user in database.
 |![](https://i.imgur.com/iNPPzvA.png)  |  ![](https://i.imgur.com/cnyoSMv.png)|
 :-------------------------:|:-------------------------:
 |Schemat blokowy funkcji showBooks           | Schemat blokowy funkcji rejestrującej użytkownika|
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 # 5. Opis użytkowy programu C++ 
 
 <p align="justify">Poruszanie się po programie jest bardzo intuicyjne. Po uruchomieniu aplikacji użytkownikowi ukazuje się menu biblioteki, w którym może się zarejestrować, zalogować lub wybrać opcje "Show Catalogue", która wyświetli tytuły wszystkich dostępnych książek. </p>
@@ -330,6 +386,12 @@ Searches user in database.
 | Wygląd programu dla bibliotekarza |
 
 <p align="justify">Do uruchomienia programu w systemie Windows potrzebne są pliki konfiguracyjne *.dll, które znajdują się w folderze wraz z plikiem wykonywalnym.  </p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 # 6. Listing kodu C++ - wraz z komentarzami
@@ -354,7 +416,8 @@ void addbookform::on_pushButton_clicked()
         book_title = ui->lineEdit->text().trimmed();
     else
     {
-        QMessageBox::warning(this, tr("Warning"), tr("Title of book cannot be empty!"));
+        QMessageBox::warning(this, 
+        tr("Warning"), tr("Title of book cannot be empty!"));
         return;
     }
 
@@ -362,7 +425,8 @@ void addbookform::on_pushButton_clicked()
         book_author = ui->lineEdit_2->text().trimmed();
     else
     {
-        QMessageBox::warning(this, tr("Warning"), tr("Author cannot be empty!"));
+        QMessageBox::warning(this, 
+        tr("Warning"), tr("Author cannot be empty!"));
         return;
     }
 
@@ -370,7 +434,8 @@ void addbookform::on_pushButton_clicked()
         book_ISBN = ui->lineEdit_3->text().trimmed();
     else
     {
-        QMessageBox::warning(this, tr("Warning"), tr("ISBN cannot be empty!"));
+        QMessageBox::warning(this, 
+        tr("Warning"), tr("ISBN cannot be empty!"));
         return;
     }
 
@@ -378,14 +443,16 @@ void addbookform::on_pushButton_clicked()
         book_publicationDate = ui->lineEdit_4->text().trimmed();
     else
     {
-     QMessageBox::warning(this,tr("Warning"), tr("Publication date cannot be empty!"));
+     QMessageBox::warning(this,
+     tr("Warning"), tr("Publication date cannot be empty!"));
         return;
     }
     if (!ui->lineEdit_5->text().trimmed().isEmpty())
         book_publicationPlace = ui->lineEdit_5->text().trimmed();
     else
     {
-     QMessageBox::warning(this,tr("Warning"), tr("Publication place cannot be empty!"));
+     QMessageBox::warning(this,
+     tr("Warning"), tr("Publication place cannot be empty!"));
         return;
     }
 
@@ -393,7 +460,8 @@ void addbookform::on_pushButton_clicked()
         book_publisher = ui->lineEdit_6->text().trimmed();
     else
     {
-     QMessageBox::warning(this, tr("Warning"), tr("Publisher cannot be empty!"));
+     QMessageBox::warning(this, 
+     tr("Warning"), tr("Publisher cannot be empty!"));
         return;
     }
 
@@ -401,14 +469,16 @@ void addbookform::on_pushButton_clicked()
         book_pagesNumber = ui->lineEdit_7->text().trimmed();
     else
     {
-   QMessageBox::warning(this,tr("Warning"), tr("Number of pages cannot be empty!"));
+   QMessageBox::warning(this,
+   tr("Warning"), tr("Number of pages cannot be empty!"));
         return;
     }
 
     addNewBook(book_title,book_author,book_ISBN,book_publicationDate,
     book_publicationPlace,book_publisher,book_pagesNumber);
     
- QMessageBox::information(this, tr("Information"), tr("Book added!"));
+ QMessageBox::information(this, 
+ tr("Information"), tr("Book added!"));
     return;
 
 }
@@ -417,7 +487,8 @@ Adds a new book. It takes: title, author, ISBN number, publication date,
 publication place, publisher and number of pages as arguments. 
     */
 void addbookform::addNewBook(QString title, QString author, QString ISBN, 
-QString publicationDate, QString publicationPlace, QString publisher, QString pagesNumber)
+QString publicationDate, QString publicationPlace, QString publisher, 
+QString pagesNumber)
 {
     QString path = QCoreApplication::applicationDirPath();
             path.append("\\bookdatabase.txt");
@@ -610,9 +681,9 @@ void bookmanager::deleteBook(int row)
 }
 
 /**
-Rents a book given its row and reservers login. Adds current date as a beginnig 
-of duration of renting book process. Adds deadline for book returning 
-by adding 30 days to current date. Updates database.
+Rents a book given its row and reservers login. Adds current date as 
+a beginnig of duration of renting book process. Adds deadline for book 
+returning by adding 30 days to current date. Updates database.
 */
 void bookmanager::rentABook(int row, QString login)
 {
@@ -672,8 +743,9 @@ void bookmanager::reserveABook(int row, QString login)
 }
 
 /**
-Renews a book given its row. Postpones the deadline of book returning by adding 30 days
-to current date and setting is as a new dealine. Updates database.
+Renews a book given its row. Postpones the deadline of book returning by 
+adding 30 daysto current date and setting is as a new dealine. 
+Updates database.
 */
 void bookmanager::renewABook(int row)
 {
@@ -718,8 +790,8 @@ QString LoginManager::getPassword()
 }
 
 /**
-Logging function. Collects data (login and password) from GUI. Then uses function 
-verifyPassword.
+Logging function. Collects data (login and password) from GUI. Then uses 
+function verifyPassword.
 */
 void LoginManager::on_buttonBox_accepted()
 {
@@ -730,7 +802,8 @@ void LoginManager::on_buttonBox_accepted()
         user_login = ui->lineEdit_2->text().trimmed();
     else
     {
-        QMessageBox::warning(this, tr("Warning"), tr("Login cannot be empty!"));
+        QMessageBox::warning(this, 
+        tr("Warning"), tr("Login cannot be empty!"));
         return ;
     }
 
@@ -738,7 +811,8 @@ void LoginManager::on_buttonBox_accepted()
         user_password = ui->lineEdit->text().trimmed();
     else
     {
-        QMessageBox::warning(this, tr("Warning"), tr("Password cannot be empty!"));
+        QMessageBox::warning(this, 
+        tr("Warning"), tr("Password cannot be empty!"));
         return ;
     }
     verifyPassword(user_login, user_password);
@@ -750,7 +824,8 @@ Verifies if password and login match. Takes login and password as arguments.
 void LoginManager::verifyPassword(QString user_login, QString user_password)
 {
     userManager manager;
-    if (manager.userSearching(user_login.toStdString() , user_password.toStdString() ))
+    if (manager.userSearching(user_login.toStdString() ,
+    user_password.toStdString() ))
     {
         if (manager.access==true)
         {
@@ -759,17 +834,23 @@ void LoginManager::verifyPassword(QString user_login, QString user_password)
         }
         else
         {
-            QMessageBox::warning(this, tr("Warning"), tr("Wrong password!"));
+            QMessageBox::warning(this, 
+            tr("Warning"), tr("Wrong password!"));
             return ;
         }
     }
     else
     {
-        QMessageBox::warning(this, tr("Warning"), tr("Wrong login or password!"));
+        QMessageBox::warning(this, 
+        tr("Warning"), tr("Wrong login or password!"));
         return ;
     }
 }
 ```
+<br>
+<br>
+<br>
+
 ### MainWindow class
 ```c++
 /**
@@ -923,11 +1004,11 @@ bool RegisterManager::isUserInDatabase(QString login)
 }
 
 /**
-Creates a new user. Takes login, password, name, surname and type (taken from GUI) 
-as arguments. Updates users database.
+Creates a new user. Takes login, password, name, surname and type (taken from 
+GUI) as arguments. Updates users database.
 */
-void RegisterManager::createNewUser(QString login, QString password, QString name, 
-QString surname, QString type)
+void RegisterManager::createNewUser(QString login, QString password, QString 
+name, QString surname, QString type)
 {
     QString path2 = QCoreApplication::applicationDirPath();
             path2.append("\\userdatabase.txt");
@@ -952,10 +1033,14 @@ QString surname, QString type)
     out << newQuery;
 }
 ```
+<br>
+<br>
+
 ### UserManager class
 ```c++
 /**
-Searches user in database. Chcecks correctness of given password and returns access.
+Searches user in database. Chcecks correctness of given password 
+and returns access.
 */
 bool userManager::userSearching(std::string login, std::string password)
 {
@@ -992,6 +1077,9 @@ bool userManager::userSearching(std::string login, std::string password)
     else return false;
 }
 ```
+<br>
+<br>
+
 # 7. Wnioski
 
 - <p align="justify">W trakcie realizacji projektu w C++ udało mi się zrealizować wszystkie jego początkowe założenia. Ponadto w Pythonie zrealizowałam 2 dodatkowe założenia: klienci mogą sprawdzić listę swoich rezerwacji oraz historię wypożyczeń.</p>

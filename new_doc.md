@@ -396,16 +396,19 @@ void addbookform::on_pushButton_clicked()
         return;
     }
 
-    addNewBook(book_title,book_author,book_ISBN,book_publicationDate,book_publicationPlace,book_publisher,book_pagesNumber);
+    addNewBook(book_title,book_author,book_ISBN,book_publicationDate,
+    book_publicationPlace,book_publisher,book_pagesNumber);
     
     QMessageBox::information(this, tr("Information"), tr("Book added!"));
     return;
 
 }
     /**
-Adds a new book. It takes: title, author, ISBN number, publication date, publication place, publisher and number of pages as arguments. 
+Adds a new book. It takes: title, author, ISBN number, publication date, 
+publication place, publisher and number of pages as arguments. 
     */
-void addbookform::addNewBook(QString title, QString author, QString ISBN, QString publicationDate, QString publicationPlace, QString publisher, QString pagesNumber)
+void addbookform::addNewBook(QString title, QString author, QString ISBN, 
+QString publicationDate, QString publicationPlace, QString publisher, QString pagesNumber)
 {
     QString path = QCoreApplication::applicationDirPath();
             path.append("\\bookdatabase.txt");
@@ -908,7 +911,8 @@ bool RegisterManager::isUserInDatabase(QString login)
 /**
 Creates a new user. Takes login, password, name, surname and type (taken from GUI) as arguments. Updates users database.
 */
-void RegisterManager::createNewUser(QString login, QString password, QString name, QString surname, QString type)
+void RegisterManager::createNewUser(QString login, QString password, QString name, 
+QString surname, QString type)
 {
     QString path2 = QCoreApplication::applicationDirPath();
             path2.append("\\userdatabase.txt");

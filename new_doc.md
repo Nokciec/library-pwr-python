@@ -1,3 +1,4 @@
+
 <center>
 	<h2>
 		Programowanie obiektowe <br>
@@ -8,19 +9,21 @@
 
 | Wydział elektroniki      	|    Kierunek: informatyka 	|
 |	:-----------------------------------------------------	|----------------------------------:	|
-| Grupa zajęciowa: Cz 18:55      &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 	|  &nbsp;  &nbsp;  &nbsp;  &nbsp;  Semestr: 2017/2018 Lato  	|
-| Nazwisko i Imię: Poreba Dominika	&nbsp;| Nr indeksu: 241126     	|
-| Nr grupy projektowej: 	| 80 |
+| Grupa zajęciowa: Cz 18:55      &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;  &nbsp;  &nbsp; 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|  &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Semestr: 2017/2018 Lato  	|
+| Nazwisko i Imię: Poręba Dominika	&nbsp;| Nr indeksu: 241126     	|
+| Nr grupy projektowej: 	| 60 |
 | Prowadzący: 	| mgr inż. Piotr Lechowicz	|
 </center>
+<center>
+<h1>TEMAT: <Br>
+Wypożyczalnia książek</h1>
+</center>
 
-## Temat: Wypozyczalnia ksiazek
-
-<h4>
+<h3>
 Ocena:<br>
 Punkty:<br>
 Data: <br>
-</h4>
+</h3>
 
 # 1. Założenia i opis funkcjonalny programu
 ##### Poruszany problem:
@@ -28,11 +31,12 @@ Program będzie obsługiwał system zarządzania biblioteką.
 ##### Użytkownik docelowy:
 Program dedykowany jest dla klientów biblioteki oraz jej pracowników.
 ##### Założenia:
-Klientom zostanie umożliwione m. in.: rejestracja, logowanie, przeglądanie zasobów
-biblioteki, rezerwacja pozycji oraz prolongowanie wypożyczonych już dzieł.
-Pracownicy będą mogli wypożyczać zasoby klientom, dodawać nowe pozycje oraz usuwać istniejące. Tak jak i klienci będą mieli dostęp do rejestracji, logowania oraz katalogu bibliotek.
+<p align="justify">Klientom zostanie umożliwione m. in.: rejestracja, logowanie, przeglądanie zasobów biblioteki, rezerwacja pozycji oraz prolongowanie wypożyczonych już dzieł.</p>
+<p align="justify">Pracownicy będą mogli wypożyczać zasoby klientom, dodawać nowe pozycje oraz usuwać istniejące. Tak jak i klienci będą mieli dostęp do rejestracji, logowania oraz katalogu bibliotek.</p>
+
 ##### Dodatkowe założenia:
-Klient będzie mógł wyświetlić swój profil, a w nim sprawdzić historię wypożyczeń, listę swoich rezerwacji, usunąć swoje konto oraz wylogować się.
+<p align="justify">Klient będzie mógł wyświetlić swój profil, a w nim sprawdzić historię wypożyczeń, listę swoich rezerwacji, usunąć swoje konto oraz wylogować się.</p>
+
 ##### Użyte języki, środowiska i frameworki:
 - C++, Qt Creator
 - Python, CSS, HTML, Jinja2, FireBase, Flask
@@ -52,8 +56,8 @@ public:
     ~addbookform();
 private:
     /**
-Adds a new book. It takes: title, author, ISBN number, publication date, publication place, 
-publisher and number of pages as arguments. 
+Adds a new book. It takes: title, author, ISBN number, publication date, publication 
+place, publisher and number of pages as arguments. 
     */
     void addNewBook(QString title, QString author, QString ISBN, QString publicationDate, 
     QString publicationPlace, QString publisher, QString pagesNumber);
@@ -239,7 +243,8 @@ private:
 /**
 Creates a new user. Takes login, password, name, surname and type as arguments.
 */
-    void createNewUser(QString login, QString password, QString name, QString surname, QString type);
+    void createNewUser(QString login, QString password, QString name, QString surname,
+    QString type);
 };
 ```
 ### User class
@@ -286,46 +291,50 @@ Searches user in database.
 };
 ```
 # 4. Schematy blokowe oraz kod własnych funkcji 
-Poniższe schematy blokowe ukazują działanie dwóch wybranych przeze mnie funkcji. Jedna z nich jest używana do wyświetlania wszystkich książek, natomiast druga służy do rejestrowania nowego użytkownika.
+<p align="justify">Poniższe schematy blokowe ukazują działanie dwóch wybranych przeze mnie funkcji. Jedna z nich jest używana do wyświetlania wszystkich książek, natomiast druga służy do rejestrowania nowego użytkownika.</p>
+
 
 |![](https://i.imgur.com/iNPPzvA.png)  |  ![](https://i.imgur.com/cnyoSMv.png)|
 :-------------------------:|:-------------------------:
 |Schemat blokowy funkcji showBooks           | Schemat blokowy funkcji rejestrującej użytkownika|
 # 5. Opis użytkowy programu C++ 
-Poruszanie się po programie jest bardzo intuicyjne. Po uruchomieniu aplikacji użytkownikowi ukazuje się menu biblioteki, w którym może się zarejestrować, zalogować lub wybrać opcje "Show Catalogue", która wyświetli tytuły wszystkich dostępnych książek. 
+
+<p align="justify">Poruszanie się po programie jest bardzo intuicyjne. Po uruchomieniu aplikacji użytkownikowi ukazuje się menu biblioteki, w którym może się zarejestrować, zalogować lub wybrać opcje "Show Catalogue", która wyświetli tytuły wszystkich dostępnych książek. </p>
 
 |![](https://i.imgur.com/BmS47tO.png)  |  ![](https://i.imgur.com/qQBTneO.png)|
 :-------------------------:|:-------------------------:
 |Menu główne            |   Menu po wybraniu opcji wyświetlenia katalogu|
 
-Po wybraniu opcji rejestracji wyświetla się formularz do wypełnienia. Jeżeli rejestracji próbuje dokonać użytkownik, który istnieje już w bazie, program informuje o tym. Pozostawienie któregoś z pól pustym również wyświetla ostrzeżenie. Dodatkowym udogodnieniem, które ułatwia rejestracje jest opcja, która sprawdza czy oba podane hasła są identyczne. 
+<p align="justify">Po wybraniu opcji rejestracji wyświetla się formularz do wypełnienia. Jeżeli rejestracji próbuje dokonać użytkownik, który istnieje już w bazie, program informuje o tym. Pozostawienie któregoś z pól pustym również wyświetla ostrzeżenie. Dodatkowym udogodnieniem, które ułatwia rejestracje jest opcja, która sprawdza czy oba podane hasła są identyczne. </p>
 
 |![](https://i.imgur.com/KnS2zRj.png)  |  ![](https://i.imgur.com/2mtZ8EB.png)|
 :-------------------------:|:-------------------------:
 |Menu rejestracji            |   Panel rejestracyjny z przykładowymi danymi|
 
-Po wybraniu opcji logowania wyświetla się formularz do wpisania loginu i hasła. W przypadku wpisania złego hasła, otrzymujemy komunikat o tym informujący lub w przypadku, gdy program podejrzewa że podanego użytkownika nie ma w bazie, również otrzymujemy stosowny komunikat.
+<p align="justify">Po wybraniu opcji logowania wyświetla się formularz do wpisania loginu i hasła. W przypadku wpisania złego hasła, otrzymujemy komunikat o tym informujący lub w przypadku, gdy program podejrzewa że podanego użytkownika nie ma w bazie, również otrzymujemy stosowny komunikat.</p>
 
 |![](https://i.imgur.com/5y6i7AF.png)  |  ![](https://i.imgur.com/LX2JGKP.png) ![](https://i.imgur.com/VMT9OND.png)|
 :-------------------------:|:-------------------------:
 |Menu logowania          |   Przykładowe komunikaty|
 
-Po zalogowaniu się jako klient uzyskujemy dostęp do podstawowych funkcji programu. Otrzymujemy katalog książek wraz z większością ich danych: autorem, numerem ISBN, liczba stron, informacje dotyczące publikacji (miejsce, czas i wydawnictwo) oraz dostępności książki (czy jest wypożyczona, czy jest zarezerwowana). Możemy zarezerwować książkę, którą chcemy wypożyczyć lub prolongować wypożyczoną już przez nas pozycje. Po wykonaniu czynności które nas interesują możemy się wylogować. 
+<p align="justify">Po zalogowaniu się jako klient uzyskujemy dostęp do podstawowych funkcji programu. Otrzymujemy katalog książek wraz z większością ich danych: autorem, numerem ISBN, liczba stron, informacje dotyczące publikacji (miejsce, czas i wydawnictwo) oraz dostępności książki (czy jest wypożyczona, czy jest zarezerwowana). Możemy zarezerwować książkę, którą chcemy wypożyczyć lub prolongować wypożyczoną już przez nas pozycje. Po wykonaniu czynności które nas interesują możemy się wylogować. </p>
 
 | ![](https://i.imgur.com/bpitYQ6.png)  |
 |---|
 | Wygląd programu dla klienta |
 
-Po zalogowaniu się jako bibliotekarz uzyskujemy dostęp do większości funkcji programu. Otrzymujemy katalog książek wraz z ich wszystkimi danymi: autorem, numerem ISBN, liczba stron, informacje dotyczące publikacji (miejsce, czas i wydawnictwo) oraz dostępności książki (czy jest wypożyczona, kto ja wypożyczył, od kiedy i do kiedy, czy jest zarezerwowana, jeśli tak to przez kogo). Mamy możliwość dodania nowej książki, usunięcia istniejącej lub wypożyczenia/zarezerwowania jej istniejącemu użytkownikowi. Po wykonaniu czynności które nas interesują możemy się wylogować.
+<p align="justify">Po zalogowaniu się jako bibliotekarz uzyskujemy dostęp do większości funkcji programu. Otrzymujemy katalog książek wraz z ich wszystkimi danymi: autorem, numerem ISBN, liczba stron, informacje dotyczące publikacji (miejsce, czas i wydawnictwo) oraz dostępności książki (czy jest wypożyczona, kto ja wypożyczył, od kiedy i do kiedy, czy jest zarezerwowana, jeśli tak to przez kogo). Mamy możliwość dodania nowej książki, usunięcia istniejącej lub wypożyczenia.</p>
 
 | ![](https://i.imgur.com/VWsY5qt.png)  |
 |---|
 | Wygląd programu dla bibliotekarza |
 
-Do uruchomienia programu w systemie Windows potrzebne są pliki konfiguracyjne *.dll, które znajdują się w folderze wraz z plikiem wykonywalnym.  
+<p align="justify">Do uruchomienia programu w systemie Windows potrzebne są pliki konfiguracyjne *.dll, które znajdują się w folderze wraz z plikiem wykonywalnym.  </p>
+
 
 # 6. Listing kodu C++ - wraz z komentarzami
-W niektorych funkcjach nadal znajduja sie elementy GUI, ktorych nie dalo sie wyciac ze wzgledu na polaczenie warstwy logicznej z warstwa graficzna programu. 
+<p align="justify">W niektórych funkcjach nadal znajdują się elementy GUI, którtch nie dało się wyciąć ze względu na połączenie warstwy logicznej z warstwą graficzną programu.</p>
+
 ### AddBookForm class
 ```c++
     /**
@@ -369,14 +378,14 @@ void addbookform::on_pushButton_clicked()
         book_publicationDate = ui->lineEdit_4->text().trimmed();
     else
     {
-        QMessageBox::warning(this, tr("Warning"), tr("Publication date cannot be empty!"));
+     QMessageBox::warning(this,tr("Warning"), tr("Publication date cannot be empty!"));
         return;
     }
     if (!ui->lineEdit_5->text().trimmed().isEmpty())
         book_publicationPlace = ui->lineEdit_5->text().trimmed();
     else
     {
-        QMessageBox::warning(this, tr("Warning"), tr("Publication place cannot be empty!"));
+     QMessageBox::warning(this,tr("Warning"), tr("Publication place cannot be empty!"));
         return;
     }
 
@@ -384,7 +393,7 @@ void addbookform::on_pushButton_clicked()
         book_publisher = ui->lineEdit_6->text().trimmed();
     else
     {
-        QMessageBox::warning(this, tr("Warning"), tr("Publisher cannot be empty!"));
+     QMessageBox::warning(this, tr("Warning"), tr("Publisher cannot be empty!"));
         return;
     }
 
@@ -392,14 +401,14 @@ void addbookform::on_pushButton_clicked()
         book_pagesNumber = ui->lineEdit_7->text().trimmed();
     else
     {
-        QMessageBox::warning(this, tr("Warning"), tr("Number of pages cannot be empty!"));
+   QMessageBox::warning(this,tr("Warning"), tr("Number of pages cannot be empty!"));
         return;
     }
 
     addNewBook(book_title,book_author,book_ISBN,book_publicationDate,
     book_publicationPlace,book_publisher,book_pagesNumber);
     
-    QMessageBox::information(this, tr("Information"), tr("Book added!"));
+ QMessageBox::information(this, tr("Information"), tr("Book added!"));
     return;
 
 }
@@ -506,7 +515,8 @@ Converts the raw database text data into a vector of Books.
 */
 std::vector<Book> bookmanager::showBooks()
 {
-    QList<QString> query = QList<QString>::fromVector(QVector<QString>::fromStdVector(getContent()));
+    QList<QString> query =
+    QList<QString>::fromVector(QVector<QString>::fromStdVector(getContent()));
 
     std::vector<Book> temp_books;
 
@@ -600,7 +610,9 @@ void bookmanager::deleteBook(int row)
 }
 
 /**
-Rents a book given its row and reservers login. Adds current date as a beginnig of duration of renting book process. Adds deadline for book returning by adding 30 days to current date. Updates database.
+Rents a book given its row and reservers login. Adds current date as a beginnig 
+of duration of renting book process. Adds deadline for book returning 
+by adding 30 days to current date. Updates database.
 */
 void bookmanager::rentABook(int row, QString login)
 {
@@ -706,7 +718,8 @@ QString LoginManager::getPassword()
 }
 
 /**
-Logging function. Collects data (login and password) from GUI. Then uses function verifyPassword.
+Logging function. Collects data (login and password) from GUI. Then uses function 
+verifyPassword.
 */
 void LoginManager::on_buttonBox_accepted()
 {
@@ -910,7 +923,8 @@ bool RegisterManager::isUserInDatabase(QString login)
 }
 
 /**
-Creates a new user. Takes login, password, name, surname and type (taken from GUI) as arguments. Updates users database.
+Creates a new user. Takes login, password, name, surname and type (taken from GUI) 
+as arguments. Updates users database.
 */
 void RegisterManager::createNewUser(QString login, QString password, QString name, 
 QString surname, QString type)
@@ -925,7 +939,8 @@ QString surname, QString type)
     text = in.readAll();
     file2.close();
 
-    QString newQuery = text + name + ";" + surname + ";" + login + ";" + password + ";" + type + ";";
+    QString newQuery = text + name + ";" + surname + ";" + login + 
+    ";" + password + ";" + type + ";";
 
     QString path = QCoreApplication::applicationDirPath();
             path.append("\\userdatabase.txt");
@@ -960,7 +975,12 @@ bool userManager::userSearching(std::string login, std::string password)
     if(index!=-1)
     {
         QString realPassword = query[index+1];
-        QString md5password = QString(QCryptographicHash::hash((QString::fromStdString(password).toUtf8()),QCryptographicHash::Md5).toHex());
+        QString md5password =  QString(
+        QCryptographicHash::hash(
+        QString::fromStdString(password).toUtf8(),
+        QCryptographicHash::Md5
+        ).toHex());
+        
         if (realPassword==md5password)
         {
             access=true;
@@ -973,8 +993,9 @@ bool userManager::userSearching(std::string login, std::string password)
 }
 ```
 # 7. Wnioski
-- W trakcie realizacji projektu udalo mi sie zrealizowac wszystkie jego zalozenia. Ponadto w Pythonie zrealizowalam 2 dodatkowe zalozenia: klienci mogli sprawdzic liste swoich rezerwacji oraz historie wypozyczen.
-- Realizacja projektu uświadomiła mi, jak ważne jest oddzielenie warstwy logicznej programu od warstwy graficznej.
-- W przypadku Pythona oddzielenie warstwy logicznej od graficznej jest wymuszone, gdzie w C++ nie (da się bez tego obejść, chociaż odbywa się to kosztem przejrzystości kodu).
-- W Pythonie o wiele prostsze jest instalowanie zewnętrznych bibliotek.
-- Wirtualne środowisko pythona (virtualenv) jest zupełnie inne niż C++'owskie dynamiczne/statyczne linkowanie bibliotek.
+
+- <p align="justify">W trakcie realizacji projektu w C++ udało mi się zrealizować wszystkie jego początkowe założenia. Ponadto w Pythonie zrealizowałam 2 dodatkowe założenia: klienci mogą sprawdzić listę swoich rezerwacji oraz historię wypożyczeń.</p>
+- <p align="justify">Realizacja projektu uświadomiła mi, jak ważne jest oddzielenie warstwy logicznej programu od warstwy graficznej.</p>
+- <p align="justify">W przypadku Pythona oddzielenie warstwy logicznej od graficznej jest wymuszone, gdzie w C++ nie (da się bez tego obejść, chociaż odbywa się to kosztem przejrzystości kodu).</p>
+- <p align="justify">W Pythonie o wiele prostsze jest instalowanie zewnętrznych bibliotek.</p>
+- <p align="justify">Wirtualne środowisko pythona (virtualenv) jest zupełnie inne niż C++'owskie dynamiczne/statyczne linkowanie bibliotek.</p>
